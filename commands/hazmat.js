@@ -5,6 +5,7 @@ const ms = require('ms');
   module.exports = {
 	name: 'hazmat',
 	description: 'ok',
+  guildOnly: true,
 	execute(message ) {
       
     async function hazmatsuit(message) {

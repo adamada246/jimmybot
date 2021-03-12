@@ -5,6 +5,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'toomanyperms',
 	description: 'ok',
+  guildOnly: true,
 	execute(message ) {
     const toomanyperms = new Discord.MessageEmbed()
     .setColor('#f0dc66')

@@ -7,6 +7,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'commandslist',
 	description: 'ok',
+  guildOnly: false,
 	execute(message ) {
     const commands1 = new Discord.MessageEmbed()
     .setColor('#f0dc66')
@@ -17,7 +18,7 @@ module.exports = {
       { name: 'j!tricks', value: 'displays a list of all commands', inline: true },
       { name: 'j!admin', value: 'brings up a list of admin commands (only runnable by admins)', inline: true },
       { name: 'j!status', value: 'displays if Jimmybot is on or off', inline: true },
-      { name: 'j!fartstatus', value: 'displays if Jimmybot quarantines are being given', inline: true },
+      { name: 'j!quarantines', value: 'displays the current status of quarantines', inline: true },
       { name: 'j!gm', value: 'turns on jimmybot', ninline: true },
       { name: 'j!gn', value: 'turns off jimmybot', inline: true },
       { name: 'j!hi', value: 'jimmy says hello', inline: true },

@@ -6,6 +6,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'turnqon',
 	description: 'ok',
+  guildOnly: true,
 	execute(message ) {
     const isotrue = new Discord.MessageEmbed()
     .setColor('#f0dc66')

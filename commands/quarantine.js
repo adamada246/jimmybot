@@ -4,6 +4,7 @@ const ms = require('ms');
 
   module.exports = {
 	name: 'quarantine',
+  guildOnly: true,
 	description: 'ok',
 	execute(message ) {
     async function bannedword(message) {

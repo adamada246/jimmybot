@@ -6,6 +6,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'adminwarn',
 	description: 'ok',
+  guildOnly: true,
 	execute(message ) {
     const adminwarn = new Discord.MessageEmbed()
     .setColor('#f0dc66')

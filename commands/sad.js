@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 
   module.exports = {
 	name: 'sad',
+  guildOnly: false,
 	description: 'ok',
 	execute(message ) {
     const sadem = new Discord.MessageEmbed()

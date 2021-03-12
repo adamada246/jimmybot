@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'food',
 	description: 'ok',
+    guildOnly: false,
 	execute(message ) {
     const foodem = new Discord.MessageEmbed()
     .setColor('#f0dc66')

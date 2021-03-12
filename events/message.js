@@ -1,8 +1,18 @@
 const Discord = require('discord.js');
-const fs = require('fs');
+global.fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
+
 module.exports = async (client, message) => {
+
+
+  var path = require('path'),
+    __parentDir = path.dirname(module.parent.filename);
+
+  global.money = require(__parentDir+'/storage/money.json'); // path may vary
+  global.authorID = message.author.id; // or set it as the mentioned user's ID, etc.
+  global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
+
      if (message.content.startsWith("j!gm") && message.author.bot == false) {
         if (!client.commands.has('goodmorning')) return;
         try {
@@ -25,28 +35,27 @@ module.exports = async (client, message) => {
       }
     
     
-      
+      if (message.content.startsWith("j!bal") && message.author.bot == false ) {
+        if (!client.commands.has('balance')) return;
+        try {
+          client.commands.get('balance').execute(message );
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
       
     
-      if (message.content.startsWith("j!status") && message.author.bot == false && jimmybot == false) {
-        if (!client.commands.has('status false')) return;
+      if (message.content.startsWith("j!status") && message.author.bot == false) {
+        if (!client.commands.has('status')) return;
         try {
-          client.commands.get('status false').execute(message );
+          client.commands.get('status').execute(message );
         } catch (error) {
           console.error(error);
           message.reply('there was an error trying to execute that command!');
         }
       }
     
-      if (message.content.startsWith("j!status") && message.author.bot == false && jimmybot == true) {
-        if (!client.commands.has('status true')) return;
-        try {
-          client.commands.get('status true').execute(message , version);
-        } catch (error) {
-          console.error(error);
-          message.reply('there was an error trying to execute that command!');
-        }
-      }
     
       if (message.content.startsWith("j!hi") && message.author.bot == false && jimmybot == true) {
         if (!client.commands.has('hi')) return;
@@ -248,10 +257,35 @@ module.exports = async (client, message) => {
           message.reply('there was an error trying to execute that command!');
         }
       }
+
+      if (message.content.startsWith("j!bounty") && message.author.bot == false && jimmybot == true) {
+        if (!client.commands.has('bounty')) return;
+        try {
+          client.commands.get('bounty').execute(message , version);
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
     
-    
+//bountytarget[message.guild.id]
+//.then
+     // if (message.content.startsWith("j!claim") && !bountytarget[message.guild.id] == null && jimmybot == true) {
+     //   if (!client.commands.has('bountyping')) return;
+//if (!bountytarget[message.guild.id]) {
+       //   message.reply("you must run j!bounty first!")
+      //  } 
+//try {
+     //     client.commands.get('bountyping').execute(message , version);
+      //  } catch (error) {
+       //   console.error(error);
+      //    message.reply('there was an error trying to execute that command!');
+      //  }
+    //  }
      
-    
+    //  bountytarget[message.guild.id]
+
+
       if (message.content.includes("j!about") && message.author.bot == false && jimmybot == true || message.content.includes("j!info") && message.author.bot == false && jimmybot == true)  {
         if (!client.commands.has("about")) return;
         try {
@@ -265,7 +299,7 @@ module.exports = async (client, message) => {
       
       
     
-      if (message.content.startsWith("j!admin") &&  message.content.endsWith("n") && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR")) {
+      if (message.content.startsWith("j!admin") &&  message.content.endsWith("n") && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")) {
         if (!client.commands.has('adminwarn')) return;
         try {
           client.commands.get('adminwarn').execute(message , version);
@@ -275,7 +309,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!admin")  && message.content.endsWith("n") && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!admin")  && message.content.endsWith("n") && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('notanadmin')) return;
         try {
           client.commands.get('notanadmin').execute(message , version);
@@ -286,7 +320,7 @@ module.exports = async (client, message) => {
       }
     
     
-      if (message.content.startsWith("j!adminpanel")   && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!adminpanel")   && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('adminpanel')) return;
         try {
           client.commands.get('adminpanel').execute(message , version);
@@ -296,7 +330,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!adminpanel")  && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!adminpanel")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('notanadmin')) return;
         try {
           client.commands.get('notanadmin').execute(message , version);
@@ -308,7 +342,7 @@ module.exports = async (client, message) => {
     
       
     
-      if (message.content.startsWith("j!quarantines false")  && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR")  || message.content.startsWith("j!quarantine false")  && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!quarantines false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")  || message.content.startsWith("j!quarantine false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('turnqoff')) return;
         try {
           client.commands.get('turnqoff').execute(message , version);
@@ -318,7 +352,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!quarantines false")  && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine false")  && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR")  ) {
+      if (message.content.startsWith("j!quarantines false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine false")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR")  ) {
         if (!client.commands.has('notanadmin')) return;
         try {
           client.commands.get('notanadmin').execute(message , version);
@@ -328,7 +362,7 @@ module.exports = async (client, message) => {
         }
       }
       
-      if (message.content.startsWith("j!quarantines true")  && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine true")  && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!quarantines true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('turnqon')) return;
         try {
           client.commands.get('turnqon').execute(message , version);
@@ -338,7 +372,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!quarantines true")  && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine true")  && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!quarantines true")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine true")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('notanadmin')) return;
         try {
           client.commands.get('notanadmin').execute(message , version);
@@ -351,20 +385,10 @@ module.exports = async (client, message) => {
       
       
     
-      if (message.content.startsWith("j!fartstatus") && message.author.bot == false && isolations == false) {
-        if (!client.commands.has('fartoff')) return;
+      if (message.content.startsWith("j!quarantine") && message.content.endsWith("ne") && message.author.bot == false || message.content.startsWith("j!quarantines") && message.content.endsWith("es") && message.author.bot == false) {
+        if (!client.commands.has('fartstatus')) return;
         try {
-          client.commands.get('fartoff').execute(message , version);
-        } catch (error) {
-          console.error(error);
-          message.reply('there was an error trying to execute that command!');
-        }
-      }
-    
-      if (message.content.startsWith("j!fartstatus") && message.author.bot == false && isolations == true) {
-        if (!client.commands.has('farton')) return;
-        try {
-          client.commands.get('farton').execute(message , version);
+          client.commands.get('fartstatus').execute(message , version);
         } catch (error) {
           console.error(error);
           message.reply('there was an error trying to execute that command!');
@@ -373,7 +397,7 @@ module.exports = async (client, message) => {
     
       
     
-      if (message.content.includes("fart")  && !message.content.includes("status") && message.author.bot == false && isolations == true && !message.member.hasPermission("ADMINISTRATOR") || message.content.includes("Fart")  && !message.content.includes("status") && message.author.bot == false && isolations == true && !message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.includes("fart")  && message.author.bot == false && isolations == true &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.includes("Fart")  && !message.content.includes("status") && message.author.bot == false && isolations == true && !  message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('quarantine')) return;
         try {
           client.commands.get('quarantine').execute(message , version);
@@ -383,7 +407,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!suitup") && message.author.bot == false && !message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!suitup") && message.author.bot == false &&  !message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('hazmat')) return;
         try {
           client.commands.get('hazmat').execute(message , version);
@@ -393,7 +417,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!suitup")  && message.author.bot == false && message.member.hasPermission("ADMINISTRATOR") ) {
+      if (message.content.startsWith("j!suitup")  && message.author.bot == false &&  message.member.hasPermission("ADMINISTRATOR") ) {
         if (!client.commands.has('toomanyperms')) return;
         try {
           client.commands.get('toomanyperms').execute(message , version);
@@ -402,4 +426,5 @@ module.exports = async (client, message) => {
           message.reply('there was an error trying to execute that command!');
         }
       }
+  
 }

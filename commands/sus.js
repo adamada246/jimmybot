@@ -4,6 +4,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'sus',
 	description: 'ok',
+  guildOnly: false,
 	execute(message ) {
     const susem = new Discord.MessageEmbed()
     .setColor('#f0dc66')

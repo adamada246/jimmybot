@@ -5,6 +5,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'turnqoff',
 	description: 'ok',
+  guildOnly: true,
 	execute(message ) {
     const isofalse = new Discord.MessageEmbed()
     .setColor('#f0dc66')

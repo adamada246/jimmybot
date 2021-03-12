@@ -6,6 +6,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'wrongformat',
 	description: 'ok',
+  guildOnly: false,
 	execute(message ) {
     const wrongformatem = new Discord.MessageEmbed()
     .setColor('#f0dc66')

@@ -7,6 +7,7 @@ const Discord = require('discord.js');
 module.exports = {
 	name: 'goodboy',
 	description: 'ok',
+	guildOnly: false,
 	execute(message ) {
 		const goodboy = new Discord.MessageEmbed()
 		.setColor('#f0dc66')

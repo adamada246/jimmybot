@@ -6,6 +6,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'adminpanel',
 	description: 'ok',
+	guildOnly: true,
 	execute(message ) {
 		const adminpanel = new Discord.MessageEmbed()
 		.setColor('#f0dc66')

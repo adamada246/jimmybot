@@ -4,6 +4,7 @@ const Discord = require('discord.js');
   module.exports = {
 	name: 'talents',
 	description: 'ok',
+  guildOnly: false,
 	execute(message ) {
     const talentsem = new Discord.MessageEmbed()
     .setColor('#f0dc66')
