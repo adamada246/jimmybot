@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
-
+path = require('path'),
+__parentDir = path.dirname(module.parent.filename);
+botstorage1 = require(__parentDir+'/storage/jimmybot.json'); // path may vary
 
 module.exports = {
 	name: 'goodmorning',
@@ -13,7 +15,8 @@ module.exports = {
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .setTimestamp()
     .setFooter('Jimmybot' +version);
-		jimmybot = true;
+		botstorage1[message.guild.id] = true
+    fs.writeFileSync(__parentDir+'/storage/jimmybot.json', JSON.stringify(botstorage1));
     message.channel.send(goodmorning)
 	},
 };

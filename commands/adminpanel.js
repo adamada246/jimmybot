@@ -15,7 +15,7 @@ const Discord = require('discord.js');
 		.setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
 		.addFields(
 			{ name: 'j!quarantines (true/false)', value: "turns on or off Jimmybot's quarantine feature", inline: true },
-		{ name: 'j!fartstatus', value: "displays if Jimmybot's quarantine feature is currently on/off", inline: true },
+			{ name: 'j!bounties (true/false)', value: "turns on or off Jimmybot's bounty feature", inline: true },
 		)
 		.setTimestamp()
 		.setFooter('Jimmybot' +version);

@@ -16,7 +16,6 @@ async function ServerNew(guild) {
         color: '#fcff3b',
       },
     })
-      .then(console.log)
       .catch(console.error);
     
     guild.roles.create({
@@ -25,7 +24,6 @@ async function ServerNew(guild) {
         color: '#42ff3b',
       },
     })
-      .then(console.log)
       .catch(console.error);
   
   

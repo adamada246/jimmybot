@@ -6,13 +6,37 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 module.exports = async (client, message) => {
 
 
-  var path = require('path'),
-    __parentDir = path.dirname(module.parent.filename);
+  
 
-  global.money = require(__parentDir+'/storage/money.json'); // path may vary
+  path = require('path'),
+  __parentDir = path.dirname(module.parent.filename);
+  botstorage1 = require(__parentDir+'/storage/jimmybot.json'); // path may vary
+  botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
+  botstorage3 = require(__parentDir+'/storage/bounties.json'); // path may vary
+
+ money = require(__parentDir+'/storage/money.json'); // path may vary
   global.authorID = message.author.id; // or set it as the mentioned user's ID, etc.
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
 
+
+
+
+
+     if(botstorage1[message.guild.id] == null || !botstorage1[message.guild.id]){
+      botstorage1[message.guild.id] = true
+      fs.writeFileSync(__parentDir+'/storage/jimmybot.json', JSON.stringify(botstorage1));
+     }
+
+     if(botstorage2[message.guild.id] == null || !botstorage2[message.guild.id]){
+      botstorage2[message.guild.id] = true
+      fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage2));
+     }
+
+     if(botstorage3[message.guild.id] == null || !botstorage3[message.guild.id]){
+      botstorage3[message.guild.id] = true
+      fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage3));
+     }
+     
      if (message.content.startsWith("j!gm") && message.author.bot == false) {
         if (!client.commands.has('goodmorning')) return;
         try {
@@ -33,12 +57,33 @@ module.exports = async (client, message) => {
           message.reply('there was an error trying to execute that command!');
         }
       }
+
+      
+      if (message.content.startsWith("j!catch") && message.author.bot == false ) {
+        if (!client.commands.has('catch')) return;
+        try {
+          client.commands.get('catch').execute(message );
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
     
     
-      if (message.content.startsWith("j!bal") && message.author.bot == false ) {
+      if (message.content.startsWith("j!bal") && !message.content.includes("j!balance") && message.author.bot == false || message.content.startsWith("j!balance") && message.author.bot == false ) {
         if (!client.commands.has('balance')) return;
         try {
           client.commands.get('balance').execute(message );
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
+
+      if (message.content.startsWith("j!pay") && message.author.bot == false ) {
+        if (!client.commands.has('pay')) return;
+        try {
+          client.commands.get('pay').execute(message );
         } catch (error) {
           console.error(error);
           message.reply('there was an error trying to execute that command!');
@@ -57,7 +102,7 @@ module.exports = async (client, message) => {
       }
     
     
-      if (message.content.startsWith("j!hi") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("j!hi") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('hi')) return;
         try {
           client.commands.get('hi').execute(message , version);
@@ -67,7 +112,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("good boy") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("good boy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('goodboy')) return;
         try {
           client.commands.get('goodboy').execute(message , version);
@@ -77,7 +122,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("goodboy") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('goodboy')) return;
         try {
           client.commands.get('goodboy').execute(message , version);
@@ -87,7 +132,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!good boy") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!good boy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('eastereggwarn')) return;
         try {
           client.commands.get('eastereggwarn').execute(message , version);
@@ -97,7 +142,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!goodboy") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('eastereggwarn')) return;
         try {
           client.commands.get('eastereggwarn').execute(message , version);
@@ -119,7 +164,7 @@ module.exports = async (client, message) => {
       }
       
     
-      if (message.content.includes("food") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("food") && message.content.endsWith("food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('food')) return;
         try {
           client.commands.get('food').execute(message , version);
@@ -129,7 +174,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!food") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('eastereggwarn')) return;
         try {
           client.commands.get('eastereggwarn').execute(message , version);
@@ -139,7 +184,7 @@ module.exports = async (client, message) => {
         }
       }
       
-      if (message.content.includes("play") && !message.content.startsWith("-") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("play") && message.content.endsWith("play") && !message.content.startsWith("-") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('play')) return;
         try {
           client.commands.get('play').execute(message , version);
@@ -149,7 +194,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!play") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!play") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('eastereggwarn')) return;
         try {
           client.commands.get('eastereggwarn').execute(message , version);
@@ -167,7 +212,7 @@ module.exports = async (client, message) => {
       .setTimestamp()
       .setFooter('Jimmybot' +version);
     
-      if (message.content.includes("dumb") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('dumb')) return;
         try {
           client.commands.get('dumb').execute(message , version);
@@ -177,7 +222,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!dumb") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('eastereggwarn')) return;
         try {
           client.commands.get('eastereggwarn').execute(message , version);
@@ -187,7 +232,7 @@ module.exports = async (client, message) => {
         }
       }
       
-      if (message.content.includes("j!sus") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!sus") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('sus')) return;
         try {
           client.commands.get('sus').execute(message , version);
@@ -197,7 +242,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!portrait") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!portrait") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('portrait')) return;
         try {
           client.commands.get('portrait').execute(message , version);
@@ -207,7 +252,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!sad") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!sad") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('sad')) return;
         try {
           client.commands.get('sad').execute(message , version);
@@ -217,7 +262,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.includes("j!owner") && message.author.bot == false && jimmybot == true) {
+      if (message.content.includes("j!owner") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('owner')) return;
         try {
           client.commands.get('owner').execute(message , version);
@@ -228,7 +273,7 @@ module.exports = async (client, message) => {
       }
       
     
-      if (message.content.startsWith("j!talents") && message.content.endsWith("s") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("j!talents") && message.content.endsWith("s") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('talents')) return;
         try {
           client.commands.get('talents').execute(message , version);
@@ -238,7 +283,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!talent") && message.content.endsWith("t") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("j!talent") && message.content.endsWith("t") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has(talents)) return;
         try {
           client.commands.get(talents).execute(message , version);
@@ -248,7 +293,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("!j") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("!j") && message.author.bot == false && botstorage1[message.guild.id] == true) {
         if (!client.commands.has('wrongformat')) return;
         try {
           client.commands.get('wrongformat').execute(message , version);
@@ -258,7 +303,7 @@ module.exports = async (client, message) => {
         }
       }
 
-      if (message.content.startsWith("j!bounty") && message.author.bot == false && jimmybot == true) {
+      if (message.content.startsWith("j!bounty") && message.author.bot == false && botstorage1[message.guild.id] == true ) { 
         if (!client.commands.has('bounty')) return;
         try {
           client.commands.get('bounty').execute(message , version);
@@ -268,25 +313,7 @@ module.exports = async (client, message) => {
         }
       }
     
-//bountytarget[message.guild.id]
-//.then
-     // if (message.content.startsWith("j!claim") && !bountytarget[message.guild.id] == null && jimmybot == true) {
-     //   if (!client.commands.has('bountyping')) return;
-//if (!bountytarget[message.guild.id]) {
-       //   message.reply("you must run j!bounty first!")
-      //  } 
-//try {
-     //     client.commands.get('bountyping').execute(message , version);
-      //  } catch (error) {
-       //   console.error(error);
-      //    message.reply('there was an error trying to execute that command!');
-      //  }
-    //  }
-     
-    //  bountytarget[message.guild.id]
-
-
-      if (message.content.includes("j!about") && message.author.bot == false && jimmybot == true || message.content.includes("j!info") && message.author.bot == false && jimmybot == true)  {
+      if (message.content.includes("j!about") && message.author.bot == false && botstorage1[message.guild.id] == true || message.content.includes("j!info") && message.author.bot == false && botstorage1[message.guild.id] == true)  {
         if (!client.commands.has("about")) return;
         try {
           client.commands.get("about").execute(message , version);
@@ -352,7 +379,7 @@ module.exports = async (client, message) => {
         }
       }
     
-      if (message.content.startsWith("j!quarantines false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine false")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR")  ) {
+      if (message.content.startsWith("j!quarantines false")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine false")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR")  ) {
         if (!client.commands.has('notanadmin')) return;
         try {
           client.commands.get('notanadmin').execute(message , version);
@@ -381,7 +408,57 @@ module.exports = async (client, message) => {
           message.reply('there was an error trying to execute that command!');
         }
       }
+
+
+      if (message.content.startsWith("j!bounties false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")  ) {
+        if (!client.commands.has('bountiesoff')) return;
+        try {
+          client.commands.get('bountiesoff').execute(message , version);
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
     
+      if (message.content.startsWith("j!bounties false")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
+        if (!client.commands.has('notanadmin')) return;
+        try {
+          client.commands.get('notanadmin').execute(message , version);
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
+      
+      if (message.content.startsWith("j!bounties true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")) {
+        if (!client.commands.has('bountieson')) return;
+        try {
+          client.commands.get('bountieson').execute(message , version);
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
+    
+      if (message.content.startsWith("j!bounties true")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR")  ) {
+        if (!client.commands.has('notanadmin')) return;
+        try {
+          client.commands.get('notanadmin').execute(message , version);
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
+
+      if (message.content.startsWith("j!bounties") && message.content.endsWith("ies") && message.author.bot == false ) {
+        if (!client.commands.has('bountystatus')) return;
+        try {
+          client.commands.get('bountystatus').execute(message , version);
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
       
       
     

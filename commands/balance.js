@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
-
+path = require('path'),
+__parentDir = path.dirname(module.parent.filename);
+money = require(__parentDir+'/storage/money.json'); // path may vary
 
 
 
@@ -7,16 +9,36 @@ const Discord = require('discord.js');
 	name: 'balance',
 	description: 'ok',
     
-	execute(message ) {
 
+	execute(message ) {
+    
+    async function getuser(message) {
+      if (message.mentions.users.first()){
+      userbal = message.mentions.users.first().id
+      userbalrecall = message.mentions.users.first()
+      }
+
+
+      if (!message.mentions.users.first()) {
+        userbal = message.author.id
+        userbalrecall = message.author
+      }
+
+    }
+
+
+
+
+      getuser(message);
         var path = require('path'),
         moneydir = path.join(__dirname + '/../storage/money.json')
         const money = require(moneydir); // path may vary
-        money[authorID] +=2;
-        fs.writeFileSync(moneydir, JSON.stringify(money));
-        console.log(money[authorID]);
+        if (!money[userbal]){
+          money[userbal] = 0
+        }
+        console.log(userbalrecall.username+" now has "+money[userbal]+" treats.");
         
-        message.channel.send("Thanks for running this command! 2 treats have been added. You currently have "+money[authorID]+" treats!")
+        message.channel.send(userbalrecall.username+" currently has `"+money[userbal]+"` treats!")
 
     
 	},

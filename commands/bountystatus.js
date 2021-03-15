@@ -1,20 +1,20 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
+botstorage2 = require(__parentDir+'/storage/bounties.json'); // path may vary
 
   
 
 
   module.exports = {
-	name: 'fartstatus',
+	name: 'bountystatus',
   guildOnly: true,
 	description: 'ok',
 	execute(message ) {
     const quarstatus = new Discord.MessageEmbed()
     .setColor('#f0dc66')
-    .setTitle("Issuing quarantines is currently set to `"+botstorage2[message.guild.id]+"`")
-    .setDescription("To change this, have a server admin execute j!quarantines (true/false)")
+    .setTitle("Bounties are currently set to `"+botstorage3[message.guild.id]+"`")
+    .setDescription("To change this, have a server admin execute j!bounties (true/false)")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .setTimestamp()
     .setFooter('Jimmybot' +version);
