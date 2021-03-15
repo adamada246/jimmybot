@@ -38,7 +38,7 @@ const ms = require('ms');
             tempcheck = money[message.author.id]
             givethismon = tempcheck + rewardamount
             money[message.author.id] = givethismon
-            fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(storage));
+            fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
             storage[message.guild.id] = null;
             fs.writeFileSync(__parentDir+'/storage/bounty.json', JSON.stringify(storage));
         }

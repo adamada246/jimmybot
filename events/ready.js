@@ -22,14 +22,6 @@ module.exports = (client, msg) => {
         client.user.setActivity(activities_list[index]); // sets bot's activities to one of the phrases in the arraylist.
     }, 2000); // Runs this every 2 seconds.
   
-    if (jimmybot == false) {
-      client.user.setStatus('idle')
-    }
-  
-    if (jimmybot == true) {
-      client.user.setStatus('online')
-    }
-
 
 
 }

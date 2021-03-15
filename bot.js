@@ -7,7 +7,8 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const config = require("./config.json");
 const ms = require('ms');
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+client.cooldowns = new Discord.Collection();
 
 
 
@@ -15,14 +16,16 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
-global.version = " Alpha 5.0";
+global.version = " Release 5.0";
 global.prefix = "j!"
 global.date = "3/15/2021"
+
 
 for (const file of commandFile) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
+
 
 fs.readdir('./events/', (err, files) => {
   files.forEach(file => {
