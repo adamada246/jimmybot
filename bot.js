@@ -1,6 +1,5 @@
-//goals: bounty command, changelog command, enroll command (creates message you react to to get a dm with info and a role in server), changelog command, j!invite
-//currency!: j!pay, j!bal, j!bail, bounty give, another fun way to earn money. Money will be called treats.
-//done: finish recoding file system
+//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server),  j!invite, J!BAIL!!!!!
+//done: finish recoding file system, bounty command
 const fs = require('fs');
 const Discord = require('discord.js');
 const { callbackify } = require('util');
