@@ -8,7 +8,6 @@ client.commands = new Discord.Collection();
 const config = require("./config.json");
 const ms = require('ms');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-global.isolations = true;
 
 
 
@@ -16,7 +15,6 @@ global.isolations = true;
 
 
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
-global.jimmybot = true;
 global.version = " Alpha 5.0";
 global.prefix = "j!"
 global.date = "3/15/2021"
