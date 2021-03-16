@@ -60,17 +60,20 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
                      
                 }
                 else
-                        message.reply('Transaction canceled.');
+                        message.channel.send('Transaction canceled.');
         }).catch(() => {
-                message.reply('No reaction after 30 seconds, operation canceled');
+                message.channel.send('No reaction after 30 seconds, transaction canceled');
         });
         }
 
     message.channel.send(purchase)
-    .then(function (message) {
+    .then(async function (message) {
         message.react("👍")
         message.react("👎")
         checkforreactions(message);
+        setTimeout(() => { 
+        message.delete()
+        }, ms('30s'));
       }).catch(function() {
         console.log("it wants me to say theres error but it works fine")
     });

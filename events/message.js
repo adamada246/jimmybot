@@ -204,7 +204,7 @@ module.exports = async (client, message) => {
         }
       
       
-        if (message.content.startsWith("j!tricks") && message.author.bot == false || message.content.startsWith("j!cmds") && message.author.bot == false || message.content.startsWith("j!commands") && message.author.bot == false) {
+        if (message.content.startsWith("j!tricks") && message.author.bot == false || message.content.startsWith("j!cmds") && message.author.bot == false || message.content.startsWith("j!commands") && message.author.bot == false || message.content.startsWith("j!help") && message.author.bot == false) {
           if (!client.commands.has('commandslist')) return;
           try {
             client.commands.get('commandslist').execute(message , version);
