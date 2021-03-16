@@ -16,6 +16,7 @@ module.exports = {
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
       { name: 'j!tricks', value: 'displays a list of all commands', inline: true },
+      { name: 'j!invite', value: 'Shows a link to invite jimmybot to your own server', inline: true },
       { name: 'j!admin', value: 'brings up a list of admin commands (only runnable by admins)', inline: true },
       { name: 'j!status', value: 'displays if Jimmybot is on or off', inline: true },
       { name: 'j!quarantines', value: 'displays the current status of quarantines', inline: true },

@@ -13,10 +13,7 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
 
       let role555 = message.guild.roles.cache.find(r => r.name === "Quarantined");
         peepoop3 = message
-      async function takerole() {
-        
-      }
-
+  
      amogusperson = message.author.id
      minecraftperson = message.author
 
@@ -37,7 +34,6 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
     .setColor('#f0dc66')
     .setTitle("You've been bailed!")
     .setDescription("You're free to go!")
-    .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/818234308157505606/jimmybothazmat.png')
     .setTimestamp()
     .setFooter('Jimmybot' +version);
     

@@ -547,7 +547,7 @@ module.exports = async (client, message) => {
       
         
       
-        if (message.content.includes("fart")  && message.author.bot == false && botstorage2[message.guild.id] == true &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.includes("Fart")  && !message.content.includes("status") && message.author.bot == false && botstorage2[message.guild.id] == true && !  message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.includes("fart")  && message.author.bot == false && botstorage2[message.guild.id] == true &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.includes("Fart")  && !message.content.includes("status") && message.author.bot == false && botstorage2[message.guild.id] == true && !message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('quarantine')) return;
           try {
             client.commands.get('quarantine').execute(message , version);
