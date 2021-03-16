@@ -12,7 +12,7 @@ botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
     const isofalse = new Discord.MessageEmbed()
     .setColor('#f0dc66')
     .setTitle('Epidemic over')
-    .setDescription("Jimmybot will no longer quarantine server members")
+    .setDescription("Jimmybot will no longer quarantine server members. Members currently quarantined will still have to bail out of quarantine.")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .setTimestamp()
     .setFooter('Jimmybot' +version);

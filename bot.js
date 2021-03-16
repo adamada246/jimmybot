@@ -1,5 +1,5 @@
-//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server), J!BAIL!!!!!
-//done: finish recoding file system, bounty command, j!invite
+//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server)
+//done: finish recoding file system, bounty command, j!invite, j!bail
 const fs = require('fs');
 const Discord = require('discord.js');
 const { callbackify } = require('util');

@@ -19,6 +19,7 @@ module.exports = {
       { name: 'j!admin', value: 'brings up a list of admin commands (only runnable by admins)', inline: true },
       { name: 'j!status', value: 'displays if Jimmybot is on or off', inline: true },
       { name: 'j!quarantines', value: 'displays the current status of quarantines', inline: true },
+      { name: 'j!bail', value: 'a command used to pay bail to get out of quarantine', inline: true },
       { name: 'j!gm', value: 'turns on jimmybot', ninline: true },
       { name: 'j!gn', value: 'turns off jimmybot', inline: true },
       { name: 'j!bal', value: 'displays the current amount of treats the author has, or if a user is mentioned, the amount of treats the mentioned user has', inline: true },
