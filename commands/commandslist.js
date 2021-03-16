@@ -87,14 +87,12 @@ module.exports = {
     
 
     if(pagenumber == "1"){
-      sendembed = commands1
+      message.channel.send(commands1)
     }
 
     if(pagenumber == "2"){
-      sendembed = commands2
+      message.channel.send(commands2);
     }
 
-    message.channel.send(sendembed)
-   
 	},
 };
