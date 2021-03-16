@@ -15,15 +15,15 @@ module.exports = {
     let pagenumber = args[1]
     
     
-    if (!pagenumber || pagenumber != 1 || pagenumber != 2) {
-      pagenumber = 1;
+    if (!pagenumber || pagenumber != "1" || pagenumber != "2") {
+      pagenumber = "1";
     }
 
 
     const commands1 = new Discord.MessageEmbed()
     .setColor('#f0dc66')
     .setTitle('Jimmybot Commands')
-    .setDescription("Page "+pagenumber)
+    .setDescription("Page 1")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
       { name: '**Format:**', value: '**j!command {page}**', inline: false },
@@ -48,13 +48,13 @@ module.exports = {
       { name: 'j!about', value: 'displays information about jimmybot', inline: false },
       { name: 'j!bounty', value: 'chooses a user to be a target for a bounty', inline: false },
     )
-    .setFooter("This is page "+pagenumber+"/2! To see another page use the arrows below or type in j!tricks {page}");
+    .setFooter("This is page 1/2! To see another page use the arrows below or type in j!tricks {page}");
 
 
     const commands2 = new Discord.MessageEmbed()
     .setColor('#f0dc66')
     .setTitle('Jimmybot Commands')
-    .setDescription("Page "+pagenumber)
+    .setDescription("Page 2")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
       { name: '**Format:**', value: '**j!command @user amount **', inline: false },
@@ -82,15 +82,15 @@ module.exports = {
       { name: 'dumb', value: 'Easter egg!', inline: false },
       { name: 'good boy', value: 'Easter egg!', inline: false },
     )
-    .setFooter("This is page "+pagenumber+"/2! To see another page use the arrows below or type in j!tricks {page}");
+    .setFooter("This is page 2/2! To see another page use the arrows below or type in j!tricks {page}");
 
     
 
-    if(pagenumber = 1){
+    if(pagenumber == "1"){
       sendembed = commands1
     }
 
-    if(pagenumber = 2){
+    if(pagenumber == "2"){
       sendembed = commands2
     }
 
