@@ -13,9 +13,7 @@ const ms = require('ms');
       setTimeout(() => { 
       message.member.roles.add(role555.id);
       }, ms('1s'));
-      setTimeout(() => { 
-        message.member.roles.remove(role555.id);
-      }, ms('30m'));
+      
     }
   
     const publicquarantined = new Discord.MessageEmbed()

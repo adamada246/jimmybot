@@ -4,9 +4,10 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 const ms = require('ms');
 
 
+
 module.exports = async (client, message) => {
 
-
+  let poopyrole = message.guild.roles.cache.find(r => r.name === "Quarantined");
   
 
   path = require('path'),
@@ -65,12 +66,31 @@ module.exports = async (client, message) => {
        }
 
 
-       
+       if (message.content.startsWith("j!bail") && message.author.bot == false ) {
+        if (!client.commands.has('bail')) return;
+        try {
+          console.log("command has been read")
+          client.commands.get('bail').execute(message );
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
 
       if (message.content.startsWith("j!gm") && message.author.bot == false) {
           if (!client.commands.has('goodmorning')) return;
           try {
             client.commands.get('goodmorning').execute(message );
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+
+        if (message.content.startsWith("j!invite") && message.author.bot == false) {
+          if (!client.commands.has('invite')) return;
+          try {
+            client.commands.get('invite').execute(client, message );
           } catch (error) {
             console.error(error);
             message.reply('there was an error trying to execute that command!');
@@ -87,6 +107,7 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+
 
         
         if (message.content.startsWith("j!catch") && message.author.bot == false  && botstorage3[message.guild.id] == true ) {
@@ -526,7 +547,7 @@ module.exports = async (client, message) => {
       
         
       
-        if (message.content.includes("fart")  && message.author.bot == false && isolations == true &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.includes("Fart")  && !message.content.includes("status") && message.author.bot == false && isolations == true && !  message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.includes("fart")  && message.author.bot == false && botstorage2[message.guild.id] == true &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.includes("Fart")  && !message.content.includes("status") && message.author.bot == false && botstorage2[message.guild.id] == true && !  message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('quarantine')) return;
           try {
             client.commands.get('quarantine').execute(message , version);

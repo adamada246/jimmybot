@@ -1,5 +1,5 @@
-//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server),  j!invite, J!BAIL!!!!!
-//done: finish recoding file system, bounty command
+//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server), J!BAIL!!!!!
+//done: finish recoding file system, bounty command, j!invite
 const fs = require('fs');
 const Discord = require('discord.js');
 const { callbackify } = require('util');
@@ -14,7 +14,7 @@ client.cooldowns = new Discord.Collection();
 
 
 
-
+// https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=805825655&scope=bot
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
 global.version = " Release 5.0";
 global.prefix = "j!"
