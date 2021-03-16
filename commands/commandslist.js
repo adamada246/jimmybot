@@ -15,14 +15,9 @@ module.exports = {
     let pagenumber = args[1]
     
     
-    if(!pagenumber){
-     pagenumber = "1"
-  }
-
-  if (pagenumber != "1" || pagenumber != "2"){
-    message.channel.send("That's not a valid number! The number must be 1 or 2!")
-    pagenumber=null
-  }
+    if (!pagenumber || pagenumber != 1 || pagenumber != 2) {
+      pagenumber = 1;
+    }
 
 
     const commands1 = new Discord.MessageEmbed()
@@ -91,11 +86,11 @@ module.exports = {
 
     
 
-    if(pagenumber = "1"){
+    if(pagenumber = 1){
       sendembed = commands1
     }
 
-    if(pagenumber = "2"){
+    if(pagenumber = 2){
       sendembed = commands2
     }
 
