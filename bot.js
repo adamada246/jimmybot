@@ -8,12 +8,6 @@ client.commands = new Discord.Collection();
 const config = require("./config.json");
 const ms = require('ms');
 const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-client.cooldowns = new Discord.Collection();
-
-
-
-
-
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=805825655&scope=bot
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
 global.version = " Release 5.0";
