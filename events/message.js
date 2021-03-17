@@ -64,10 +64,7 @@ module.exports = async (client, message) => {
         fs.writeFileSync(__parentDir+'/storage/timeout.json', JSON.stringify(botstorage4));
        }
 
-       let qrole = message.guild.roles.find(r => r. name === "Quarantined");
-       let vqrole = message.guild.roles.find(r => r. name === "Visiting Quarantine");
-
-       if (message.content.startsWith("j!bail") && message.author.bot == false && message.member.roles.has(qrole.id) ) {
+       if (message.content.startsWith("j!bail") && message.author.bot == false && message.member.roles.cache.some(r => r.name === "Quarantined") ) {
         if (!client.commands.has('bail')) return;
         try {
           console.log("command has been read")
@@ -559,7 +556,7 @@ module.exports = async (client, message) => {
         }
 
       
-        if (message.content.startsWith("j!suitup") && message.author.bot == false &&  !message.member.hasPermission("ADMINISTRATOR") && message.member.roles.has(vqrole.id) ) {
+        if (message.content.startsWith("j!suitup") && message.author.bot == false &&  !message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.cache.some(r => r.name === "Visiting Quarantine") && !message.member.roles.cache.some(r => r.name === "Quarantined") ) {
           if (!client.commands.has('hazmat')) return;
           try {
             client.commands.get('hazmat').execute(message , version);

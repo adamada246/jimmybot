@@ -14,6 +14,6 @@ const Discord = require('discord.js');
     .setTimestamp()
     .setFooter('Jimmybot' +version);
   
-        message.channel.send(portraitem)
+        message.channel.send(sadem)
 	},
 };
