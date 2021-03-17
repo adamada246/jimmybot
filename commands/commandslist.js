@@ -43,15 +43,14 @@ module.exports = {
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
       { name: '**Format:**', value: '**j!command {page}**', inline: false },
-      { name: 'j!tricks', value: 'displays a list of all commands', inline: false },
-      { name: ' ‏‎', value: '‏‏‎ ‎', inline: true },
+      { name: 'j!tricks', value: 'displays a list of all commands', inline: true },
       { name: '**Format:**', value: '**j!command**', inline: false },
-      { name: 'j!invite', value: 'invite Jimmybot to your server', inline: false },
-      { name: 'j!admin', value: 'brings up a list of admin commands', inline: false },
-      { name: 'j!status', value: 'displays if Jimmybot is on or off', inline: false },
-      { name: 'j!bail', value: 'a command used to pay bail to get out of quarantine', inline: false },
-      { name: 'j!gm', value: 'turns on jimmybot', ninline: false },
-      { name: 'j!gn', value: 'turns off jimmybot', inline: false },
+      { name: 'j!invite', value: 'invite Jimmybot to your server', inline: true },
+      { name: 'j!admin', value: 'brings up a list of admin commands', inline: true },
+      { name: 'j!status', value: 'displays if Jimmybot is on or off', inline: true },
+      { name: 'j!bail', value: 'a command used to pay bail to get out of quarantine', inline: true },
+      { name: 'j!gm', value: 'turns on jimmybot', inline: true },
+      { name: 'j!gn', value: 'turns off jimmybot', inline: true },
 
     )
     .setFooter("This is page 1/3! To see another page use the arrows below or type in j!tricks {page}");
@@ -63,19 +62,18 @@ module.exports = {
     .setDescription("Page 2")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
-      { name: '**Format:**', value: '**j!command {page}**', inline: false },
-      { name: 'j!hi', value: 'jimmy says hello', inline: false },
-      { name: 'j!sus', value: ' a reference to the popular hit video game amogus!!111!!1', inline: false },
-      { name: 'j!portrait', value: 'displays a portrait of jimmy', inline: false },
-      { name: 'j!sad', value: ' makes jimmy sad :(', inline: false },
-      { name: 'j!suitup', value: 'makes you temporarily put on a hazmat suit to visit the quarantine', inline: false },
-      { name: 'j!owner', value: 'displays the creator of jimmybot', inline: false },
-      { name: 'j!talent', value: "displays jimmy's secret talent", inline: false },
-      { name: 'j!about', value: 'displays information about jimmybot', inline: false },
-      { name: 'j!bounty', value: 'chooses a user to be a target for a bounty', inline: false },
+      { name: '**Format:**', value: '**j!command**', inline: false },
+      { name: 'j!hi', value: 'jimmy says hello', inline: true },
+      { name: 'j!sus', value: ' a reference to the popular hit video game amogus!!111!!1', inline: true },
+      { name: 'j!portrait', value: 'displays a portrait of jimmy', inline: true },
+      { name: 'j!sad', value: ' makes jimmy sad :(', inline: true },
+      { name: 'j!suitup', value: 'makes you temporarily put on a hazmat suit to visit the quarantine', inline: true },
+      { name: 'j!owner', value: 'displays the creator of jimmybot', inline: true },
+      { name: 'j!talent', value: "displays jimmy's secret talent", inline: true },
+      { name: 'j!about', value: 'displays information about jimmybot', inline: true },
+      { name: 'j!bounty', value: 'chooses a user to be a target for a bounty', inline: true },
       { name: '**Format:**', value: '**j!command @user amount **', inline: false },
-      { name: 'j!pay', value: 'pays the mentioned user the selected amount of treats', inline: false },
-      { name: ' ‏‎', value: '‏‏‎ ‎', inline: true },
+      { name: 'j!pay', value: 'pays the mentioned user the selected amount of treats', inline: true },
      
      
     )
@@ -88,21 +86,18 @@ module.exports = {
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
       { name: '**Format:**', value: '**j!command  @user**', inline: false },
-      { name: 'j!catch', value: 'must be run AFTER j!bounty, allows ANY user to catch the bounty target', inline: false },
-      { name: ' ‏‎', value: '‏‏‎ ‎', inline: true },
+      { name: 'j!catch', value: 'must be run AFTER j!bounty, allows ANY user to catch the bounty target', inline: true },
       { name: '**Format:**', value: '**j!command** optional: @user', inline: false },
-      { name: 'j!bal', value: 'check the balance of yourself or another user', inline: false },
-      { name: ' ‏‎', value: '‏‏‎ ‎', inline: true },
+      { name: 'j!bal', value: 'check the balance of yourself or another user', inline: true },
       { name: '**Format:**', value: '**j!command** optional (admins only): {true/false}', inline: false },
-      { name: 'j!quarantines', value: 'displays the current status of quarantines', inline: false },
-      { name: 'j!bounties', value: 'displays the current status of quarantines', inline: false },
-      { name: ' ‏‎', value: '‏‏‎ ‎', inline: true },
+      { name: 'j!quarantines', value: 'displays the current status of quarantines', inline: true },
+      { name: 'j!bounties', value: 'displays the current status of quarantines', inline: true },
       { name: '**Format:**', value: '**command**', inline: false },
-      { name: 'fart', value: 'A risky thing to say if quarantines are on', inline: false },
-      { name: 'food', value: 'Easter egg!', inline: false },
-      { name: 'play', value: 'Easter egg!', inline: false },
-      { name: 'dumb', value: 'Easter egg!', inline: false },
-      { name: 'good boy', value: 'Easter egg!', inline: false },
+      { name: 'fart', value: 'A risky thing to say if quarantines are on', inline: true },
+      { name: 'food', value: 'Easter egg!', inline: true },
+      { name: 'play', value: 'Easter egg!', inline: true },
+      { name: 'dumb', value: 'Easter egg!', inline: true },
+      { name: 'good boy', value: 'Easter egg!', inline: true },
     )
     .setFooter("This is page 3/3! To see another page use the arrows below or type in j!tricks {page}");
 
@@ -121,7 +116,7 @@ module.exports = {
                    
               }
       }).catch(() => {
-              //nothing needed
+              message.delete()
       });
       }
 
@@ -149,7 +144,7 @@ module.exports = {
                  message.delete()
               }
         }).catch(() => {
-                //nothing needed
+            message.delete()
         });
         }
 
@@ -168,7 +163,7 @@ module.exports = {
                        
                   }
           }).catch(() => {
-                  //nothing needed
+               message.delete()
           });
           }
 

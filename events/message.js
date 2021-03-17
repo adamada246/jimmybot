@@ -23,21 +23,23 @@ module.exports = async (client, message) => {
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
 
 
-
-
-  
-
-  if (!message.channel == null){
-      poopego(message);
-    }
-
-    if (message.channel == null){
+  if (message.guild === null){
+    
+    
+    if (message.author.bot == false){
       message.reply("Are you trying to crash me? Jimmybot doesn't work in DMs! Invite me to a server instead!")
+      
       console.log(message.author.username+" just tried to dm me the following: "+message.content)
-    }
+      }
+      return
+  }
+  else{
+    poopego(message);
+  }
+
 
      function poopego(message) {
-     }
+     
 
       if(botstorage1[message.guild.id] == null){
         botstorage1[message.guild.id] = true
@@ -575,6 +577,6 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
-      
+     }
      
 }

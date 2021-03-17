@@ -1,5 +1,5 @@
-//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server)
-//done: finish recoding file system, bounty command, j!invite, j!bail
+//goals: , changelog command, enroll command (creates message you react to to get a dm with info and a role in server), 
+//done: finish recoding file system, bounty command, j!invite, j!bail, DON'T LET COMMANDS EXECUTE IF RUN IN DM!!!
 const fs = require('fs');
 const Discord = require('discord.js');
 const { callbackify } = require('util');
@@ -10,9 +10,9 @@ const ms = require('ms');
 const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=805825655&scope=bot
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
-global.version = " Release 5.0";
+global.version = " Release 5.1";
 global.prefix = "j!"
-global.date = "3/15/2021"
+global.date = "3/16/2021"
 
 
 for (const file of commandFile) {
