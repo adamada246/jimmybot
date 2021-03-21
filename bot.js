@@ -30,4 +30,4 @@ fs.readdir('./events/', (err, files) => {
   })
 })
   
-client.login(config.BOT_TOKEN);
+client.login(herokuvarfortoken);
