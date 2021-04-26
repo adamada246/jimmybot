@@ -9,7 +9,7 @@ execute(client, message ) {
   
   const embed = new Discord.MessageEmbed()
     .setColor("#f0dc66")
-    .setDescription(" [amogus ](https://www.youtube.com/watch?v=i5zitZZ068k)"+ dogepic.toString() + " Click on [me lon](https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=805825655&scope=bot) to add jimmybot to your servers!!!!1111!!!!")
+    .setDescription(" [amogus ](https://www.youtube.com/watch?v=i5zitZZ068k)"+ dogepic.toString() + " Click on [me lon](https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot) to add jimmybot to your servers!!!!1111!!!!")
   
   message.channel.send(embed);
 }

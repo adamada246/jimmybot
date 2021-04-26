@@ -5,6 +5,7 @@ const ms = require('ms');
 
 
 
+
 module.exports = async (client, message) => {
 
   
@@ -15,31 +16,66 @@ module.exports = async (client, message) => {
   botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
   botstorage3 = require(__parentDir+'/storage/bounties.json'); // path may vary
   botstorage4 = require(__parentDir+'/storage/timeout.json'); // path may vary
-
-
+  ublacklist = require(__parentDir+'/storage/userbl.json'); // path may vary
+  sblacklist = require(__parentDir+'/storage/serverbl.json'); // path may vary
+  prefix = require(__parentDir+'/storage/prefix.json');
 
  money = require(__parentDir+'/storage/money.json'); // path may vary
   global.authorID = message.author.id; // or set it as the mentioned user's ID, etc.
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
+  global.adam =  client.users.cache.get('743256356533960754')
+  global.julian = client.users.cache.get('739264630559604816')
+
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 
 
   if (message.guild === null){
     
     
     if (message.author.bot == false){
-      message.reply("Are you trying to crash me? Jimmybot doesn't work in DMs! Invite me to a server instead!")
+      const dmrespond = new Discord.MessageEmbed()
+      .setColor("#f0dc66")
+      .setTitle("Are you trying to crash me?")
+      .setDescription("Jimmybot doesn't work in DMs! [Invite me to a server instead!](https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=805825655&scope=bot)")
+      .setFooter("This is a security feature! Your message has been logged. If you are purposely trying to crash Jimmybot, you will be blacklisted from using the bot.")
+
+      message.channel.send(dmrespond)
       
-      console.log(message.author.username+" just tried to dm me the following: "+message.content)
+      console.log("["+new Date().toLocaleString()+"] "+message.author.tag+" (User id: "+message.author.id+") just tried to dm me the following: "+message.content)
       }
       return
   }
   else{
-    poopego(message);
+    stopcheck(message);
+  }
+
+  if(!prefix[message.guild.id]){
+    prefix[message.guild.id] = "j!"
+    fs.writeFileSync(__parentDir+'/storage/prefix.json', JSON.stringify(prefix));
+}
+
+
+  function stopcheck(message) {
+    if(!sblacklist[message.guild.id] && !ublacklist[message.author.id] || message.author.id ==  743256356533960754){
+      poopego(message)
+    }
+    else{
+      if(message.author.bot == false){
+        if(message.content.startsWith(prefix[message.guild.id])){
+         message.channel.send("This user/server is blacklisted from using jimmybot!")
+        }
+      }
+    }
   }
 
 
      function poopego(message) {
      
+      
+    
 
       if(botstorage1[message.guild.id] == null){
         botstorage1[message.guild.id] = true
@@ -66,10 +102,9 @@ module.exports = async (client, message) => {
         fs.writeFileSync(__parentDir+'/storage/timeout.json', JSON.stringify(botstorage4));
        }
 
-       if (message.content.startsWith("j!bail") && message.author.bot == false && message.member.roles.cache.some(r => r.name === "Quarantined") ) {
+       if (message.content.startsWith(prefix[message.guild.id]+"bail") && message.author.bot == false && message.member.roles.cache.some(r => r.name === "Quarantined") ) {
         if (!client.commands.has('bail')) return;
         try {
-          console.log("command has been read")
           client.commands.get('bail').execute(message );
         } catch (error) {
           console.error(error);
@@ -77,7 +112,17 @@ module.exports = async (client, message) => {
         }
       }
 
-      if (message.content.startsWith("j!gm") && message.author.bot == false) {
+      if (message.content.startsWith(prefix[message.guild.id]+"prefix") && message.author.bot == false || message.content.startsWith("j!prefix") && message.author.bot == false) {
+        if (!client.commands.has('prefix')) return;
+        try {
+          client.commands.get('prefix').execute(message );
+        } catch (error) {
+          console.error(error);
+          message.reply('there was an error trying to execute that command!');
+        }
+      }
+
+      if (message.content.startsWith(prefix[message.guild.id]+"gm") && message.author.bot == false) {
           if (!client.commands.has('goodmorning')) return;
           try {
             client.commands.get('goodmorning').execute(message );
@@ -87,7 +132,27 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.startsWith("j!invite") && message.author.bot == false) {
+        if (message.content.startsWith(prefix[message.guild.id]+"blacklistserver") && message.author.bot == false && message.author.id ==  743256356533960754) {
+          if (!client.commands.has('blacklistserver')) return;
+          try {
+            client.commands.get('blacklistserver').execute(message );
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+      
+        if (message.content.startsWith(prefix[message.guild.id]+"blacklistuser") && message.author.bot == false && message.author.id ==  743256356533960754) {
+          if (!client.commands.has('blacklistuser')) return;
+          try {
+            client.commands.get('blacklistuser').execute(message );
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+
+        if (message.content.startsWith(prefix[message.guild.id]+"invite") && message.author.bot == false) {
           if (!client.commands.has('invite')) return;
           try {
             client.commands.get('invite').execute(client, message );
@@ -98,7 +163,7 @@ module.exports = async (client, message) => {
         }
         
       
-        if (message.content.startsWith("j!gn") && message.author.bot == false ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"gn") && message.author.bot == false ) {
           if (!client.commands.has('goodnight')) return;
           try {
             client.commands.get('goodnight').execute(message );
@@ -107,10 +172,19 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
-
-
         
-        if (message.content.startsWith("j!catch") && message.author.bot == false  && botstorage3[message.guild.id] == true ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"shop") && message.author.bot == false ) {
+          if (!client.commands.has('shop')) return;
+          try {
+            console.log("shop activated")
+            client.commands.get('shop').execute(message );
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+        
+        if (message.content.startsWith(prefix[message.guild.id]+"catch") && message.author.bot == false  && botstorage3[message.guild.id] == true || message.content.startsWith(prefix[message.guild.id]+"claim") && message.author.bot == false  && botstorage3[message.guild.id] == true) {
           if (!client.commands.has('catch')) return;
           try {
             client.commands.get('catch').execute(message );
@@ -121,7 +195,7 @@ module.exports = async (client, message) => {
         }
       
       
-        if (message.content.startsWith("j!bal") && !message.content.includes("j!balance") && message.author.bot == false || message.content.startsWith("j!balance") && message.author.bot == false ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"bal") && !message.content.includes(prefix[message.guild.id]+"balance") && message.author.bot == false || message.content.startsWith(prefix[message.guild.id]+"balance") && message.author.bot == false ) {
           if (!client.commands.has('balance')) return;
           try {
             client.commands.get('balance').execute(message );
@@ -131,7 +205,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.startsWith("j!pay") && message.author.bot == false ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"pay") && message.author.bot == false ) {
           if (!client.commands.has('pay')) return;
           try {
             client.commands.get('pay').execute(message );
@@ -142,7 +216,7 @@ module.exports = async (client, message) => {
         }
         
       
-        if (message.content.startsWith("j!status") && message.author.bot == false) {
+        if (message.content.startsWith(prefix[message.guild.id]+"status") && message.author.bot == false) {
           if (!client.commands.has('status')) return;
           try {
             client.commands.get('status').execute(message );
@@ -153,7 +227,7 @@ module.exports = async (client, message) => {
         }
       
       
-        if (message.content.startsWith("j!hi") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.startsWith(prefix[message.guild.id]+"hi") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('hi')) return;
           try {
             client.commands.get('hi').execute(message , version);
@@ -172,6 +246,17 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+
+        if (message.content.startsWith(prefix[message.guild.id]+"biden") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('biden')) return;
+          try {
+            result = getRandomInt(3)
+            client.commands.get('biden').execute(message , version, result);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
       
         if (message.content.includes("goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('goodboy')) return;
@@ -183,7 +268,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.includes("j!good boy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"good boy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -193,7 +278,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.includes("j!goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -204,7 +289,7 @@ module.exports = async (client, message) => {
         }
       
       
-        if (message.content.startsWith("j!tricks") && message.author.bot == false || message.content.startsWith("j!cmds") && message.author.bot == false || message.content.startsWith("j!commands") && message.author.bot == false || message.content.startsWith("j!help") && message.author.bot == false) {
+        if (message.content.startsWith(prefix[message.guild.id]+"tricks") && message.author.bot == false || message.content.startsWith(prefix[message.guild.id]+"cmds") && message.author.bot == false || message.content.startsWith(prefix[message.guild.id]+"commands") && message.author.bot == false || message.content.startsWith(prefix[message.guild.id]+"help") && message.author.bot == false || message.content.startsWith("j!tricks") && message.author.bot == false || message.content.startsWith("j!cmds") && message.author.bot == false || message.content.startsWith("j!commands") && message.author.bot == false || message.content.startsWith("j!help") && message.author.bot == false) {
           if (!client.commands.has('commandslist')) return;
           try {
             client.commands.get('commandslist').execute(message , version);
@@ -224,8 +309,18 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+
+        if (message.content.startsWith("bowie") && message.content.endsWith("bowie") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('bowie')) return;
+          try {
+            client.commands.get('bowie').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
       
-        if (message.content.includes("j!food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -245,7 +340,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.includes("j!play") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"play") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -254,14 +349,17 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+
+        if (message.content.includes(prefix[message.guild.id]+"changelog") && message.author.bot == false) {
+          if (!client.commands.has('changelog')) return;
+          try {
+            client.commands.get('changelog').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
       
-        const dumbem = new Discord.MessageEmbed()
-        .setColor('#f0dc66')
-        .setTitle('br')
-        .setDescription("")
-        .setImage('https://media.discordapp.net/attachments/797683414857154560/797683488483704902/image0.jpg')
-        .setTimestamp()
-        .setFooter('Jimmybot' +version);
       
         if (message.content.includes("dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('dumb')) return;
@@ -273,7 +371,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.includes("j!dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -283,7 +381,7 @@ module.exports = async (client, message) => {
           }
         }
         
-        if (message.content.includes("j!sus") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"sus") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('sus')) return;
           try {
             client.commands.get('sus').execute(message , version);
@@ -293,7 +391,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.includes("j!portrait") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"portrait") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('portrait')) return;
           try {
             client.commands.get('portrait').execute(message , version);
@@ -303,7 +401,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.includes("j!sad") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"sad") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('sad')) return;
           try {
             client.commands.get('sad').execute(message , version);
@@ -312,8 +410,28 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+       
+       if (message.content.includes(prefix[message.guild.id]+"apple") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('apple')) return;
+          try {
+            client.commands.get('apple').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+
+        if (message.content.startsWith(prefix[message.guild.id]+"friend") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('friend')) return;
+          try {
+            client.commands.get('friend').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
       
-        if (message.content.includes("j!owner") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.includes(prefix[message.guild.id]+"owner") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('owner')) return;
           try {
             client.commands.get('owner').execute(message , version);
@@ -324,7 +442,7 @@ module.exports = async (client, message) => {
         }
         
       
-        if (message.content.startsWith("j!talents") && message.content.endsWith("s") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.startsWith(prefix[message.guild.id]+"talents") && message.content.endsWith("s") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('talents')) return;
           try {
             client.commands.get('talents').execute(message , version);
@@ -334,10 +452,10 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!talent") && message.content.endsWith("t") && message.author.bot == false && botstorage1[message.guild.id] == true) {
-          if (!client.commands.has(talents)) return;
+        if (message.content.startsWith(prefix[message.guild.id]+"talent") && message.content.endsWith("t") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('talents')) return;
           try {
-            client.commands.get(talents).execute(message , version);
+            client.commands.get('talents').execute(message , version);
           } catch (error) {
             console.error(error);
             message.reply('there was an error trying to execute that command!');
@@ -365,7 +483,7 @@ module.exports = async (client, message) => {
         }, ms("5"));
         }
 
-        if (message.content.startsWith("j!bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == false ) { 
+        if (message.content.startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == false ) { 
           if (!client.commands.has('bounty')) return;
           try {
             client.commands.get('bounty').execute(message , version);
@@ -376,7 +494,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.startsWith("j!bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == true ) { 
+        if (message.content.startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == true ) { 
           try {
             message.reply("There's a 30 second cooldown for this command!")
           } catch (error) {
@@ -386,7 +504,7 @@ module.exports = async (client, message) => {
         }
 
       
-        if (message.content.includes("j!about") && message.author.bot == false && botstorage1[message.guild.id] == true || message.content.includes("j!info") && message.author.bot == false && botstorage1[message.guild.id] == true)  {
+        if (message.content.includes(prefix[message.guild.id]+"about") && message.author.bot == false && botstorage1[message.guild.id] == true || message.content.includes(prefix[message.guild.id]+"info") && message.author.bot == false && botstorage1[message.guild.id] == true)  {
           if (!client.commands.has("about")) return;
           try {
             client.commands.get("about").execute(message , version);
@@ -397,9 +515,17 @@ module.exports = async (client, message) => {
         }
       
         
-        
+        if (message.content.startsWith(prefix[message.guild.id]+"event") && message.author.bot == false) {
+          if (!client.commands.has('event')) return;
+          try {
+            client.commands.get('event').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
       
-        if (message.content.startsWith("j!admin") &&  message.content.endsWith("n") && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")) {
+        if (message.content.startsWith(prefix[message.guild.id]+"admin") &&  message.content.endsWith("n") && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")) {
           if (!client.commands.has('adminwarn')) return;
           try {
             client.commands.get('adminwarn').execute(message , version);
@@ -409,7 +535,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!admin")  && message.content.endsWith("n") && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"admin")  && message.content.endsWith("n") && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
@@ -420,7 +546,7 @@ module.exports = async (client, message) => {
         }
       
       
-        if (message.content.startsWith("j!adminpanel")   && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"adminpanel")   && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('adminpanel')) return;
           try {
             client.commands.get('adminpanel').execute(message , version);
@@ -430,7 +556,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!adminpanel")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"adminpanel")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
@@ -442,7 +568,7 @@ module.exports = async (client, message) => {
       
         
       
-        if (message.content.startsWith("j!quarantines false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")  || message.content.startsWith("j!quarantine false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"quarantines false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")  || message.content.startsWith(prefix[message.guild.id]+"quarantine false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('turnqoff')) return;
           try {
             client.commands.get('turnqoff').execute(message , version);
@@ -452,7 +578,8 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!quarantines false")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine false")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR")  ) {
+
+        if (message.content.startsWith(prefix[message.guild.id]+"quarantines false")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith(prefix[message.guild.id]+"quarantine false")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR")  ) {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
@@ -462,7 +589,7 @@ module.exports = async (client, message) => {
           }
         }
         
-        if (message.content.startsWith("j!quarantines true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"quarantines true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith(prefix[message.guild.id]+"quarantine true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('turnqon')) return;
           try {
             client.commands.get('turnqon').execute(message , version);
@@ -472,7 +599,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!quarantines true")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith("j!quarantine true")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"quarantines true")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") || message.content.startsWith(prefix[message.guild.id]+"quarantine true")  && message.author.bot == false && !  message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
@@ -483,7 +610,7 @@ module.exports = async (client, message) => {
         }
 
 
-        if (message.content.startsWith("j!bounties false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")  ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"bounties false")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")  ) {
           if (!client.commands.has('bountiesoff')) return;
           try {
             client.commands.get('bountiesoff').execute(message , version);
@@ -493,7 +620,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!bounties false")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"bounties false")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
@@ -503,7 +630,7 @@ module.exports = async (client, message) => {
           }
         }
         
-        if (message.content.startsWith("j!bounties true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")) {
+        if (message.content.startsWith(prefix[message.guild.id]+"bounties true")  && message.author.bot == false &&   message.member.hasPermission("ADMINISTRATOR")) {
           if (!client.commands.has('bountieson')) return;
           try {
             client.commands.get('bountieson').execute(message , version);
@@ -513,7 +640,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!bounties true")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR")  ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"bounties true")  && message.author.bot == false &&   !message.member.hasPermission("ADMINISTRATOR")  ) {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
@@ -523,7 +650,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.startsWith("j!bounties") && message.content.endsWith("ies") && message.author.bot == false ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"bounties") && message.content.endsWith("ies") && message.author.bot == false ) {
           if (!client.commands.has('bountystatus')) return;
           try {
             client.commands.get('bountystatus').execute(message , version);
@@ -535,7 +662,7 @@ module.exports = async (client, message) => {
         
         
       
-        if (message.content.startsWith("j!quarantine") && message.content.endsWith("ne") && message.author.bot == false || message.content.startsWith("j!quarantines") && message.content.endsWith("es") && message.author.bot == false) {
+        if (message.content.startsWith(prefix[message.guild.id]+"quarantine") && message.content.endsWith("ne") && message.author.bot == false || message.content.startsWith(prefix[message.guild.id]+"quarantines") && message.content.endsWith("es") && message.author.bot == false) {
           if (!client.commands.has('fartstatus')) return;
           try {
             client.commands.get('fartstatus').execute(message , version);
@@ -558,7 +685,7 @@ module.exports = async (client, message) => {
         }
 
       
-        if (message.content.startsWith("j!suitup") && message.author.bot == false &&  !message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.cache.some(r => r.name === "Visiting Quarantine") && !message.member.roles.cache.some(r => r.name === "Quarantined") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"suitup") && message.author.bot == false &&  !message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.cache.some(r => r.name === "Visiting Quarantine") && !message.member.roles.cache.some(r => r.name === "Quarantined") ) {
           if (!client.commands.has('hazmat')) return;
           try {
             client.commands.get('hazmat').execute(message , version);
@@ -568,7 +695,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.startsWith("j!suitup")  && message.author.bot == false &&  message.member.hasPermission("ADMINISTRATOR") ) {
+        if (message.content.startsWith(prefix[message.guild.id]+"suitup")  && message.author.bot == false &&  message.member.hasPermission("ADMINISTRATOR") ) {
           if (!client.commands.has('toomanyperms')) return;
           try {
             client.commands.get('toomanyperms').execute(message , version);

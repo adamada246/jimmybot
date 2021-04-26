@@ -9,8 +9,10 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
   
 	execute(message ) {
        
-        let prefix = "j!"
-        const args = message.content.slice(prefix.length).trim().split(/ +/g);
+        path = require('path'),
+        __parentDir = path.dirname(module.parent.filename);
+        prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
+        const args = message.content.slice(prefix[message.guild.id].length).trim().split(/ +/g);
         let amount = args[2]
         giver = message.author.id
         giverrecall = message.author

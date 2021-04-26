@@ -33,6 +33,8 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
 
       let role555 = message.guild.roles.cache.find(r => r.name === "Visiting Quarantine");
       peepoop3 = message
+
+      if (role555){
   
      amogusperson = message.author.id
      minecraftperson = message.author
@@ -91,5 +93,6 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
       }).catch(function() {
         console.log("it wants me to say theres error but it works fine")
     });
+  }
 	},
 };

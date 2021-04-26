@@ -10,10 +10,11 @@ const ms = require('ms');
     async function bannedword(message) {
       let role555 = message.guild.roles.cache.find(r => r.name === "Quarantined");
       
+      if (role555){
       setTimeout(() => { 
       message.member.roles.add(role555.id);
       }, ms('1s'));
-      
+    }
     }
   
     const publicquarantined = new Discord.MessageEmbed()

@@ -16,6 +16,7 @@ const Discord = require('discord.js');
 		.addFields(
 			{ name: 'j!quarantines (true/false)', value: "turns on or off Jimmybot's quarantine feature", inline: true },
 			{ name: 'j!bounties (true/false)', value: "turns on or off Jimmybot's bounty feature", inline: true },
+			{ name: 'j!prefix (prefix)', value: "turns on or off Jimmybot's bounty feature", inline: true },
 		)
 		.setTimestamp()
 		.setFooter('Jimmybot' +version);
