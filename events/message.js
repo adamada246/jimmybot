@@ -704,6 +704,27 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+
+        if (message.mentions.users.first()){
+          if (message.mentions.users.first().id == "808768146135318595"){
+            const pinged = new Discord.MessageEmbed()
+              .setColor('#f0dc66')
+              .setTitle('Jimmybot')
+              .setDescription("[Click here for Support](https://discord.gg/eXcMMrTY3B)")
+              .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
+              .addFields(
+                { name: '**Prefix:**', value: 'The Prefix on this server is `'+prefix[message.guild.id]+"`", inline: false },
+                { name: '**List of Commands:**', value: 'To get a list of commands use: `' +prefix[message.guild.id]+'help`', inline: false },
+
+              )
+              .setFooter("Thanks for using Jimmybot!");
+
+
+              message.channel.send(pinged)
+                    }
+                  }
+
+
      }
      
 }

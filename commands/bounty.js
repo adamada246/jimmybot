@@ -27,7 +27,7 @@ const ms = require('ms');
               const dothisuser = new Discord.MessageEmbed()
               .setColor('#f0dc66')
               .setTitle('BOUNTY TIME')
-              .setDescription("ping the following user for 0-5 jimmy treats. The person to ping is: `"+ bountytarget.username +"`! To claim the bounty use j!catch @target" )
+              .setDescription("ping the following user for 0-5 jimmy treats. The person to ping is: `"+ bountytarget.tag +"`! To claim the bounty use j!catch @target" )
               .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/819586630049726514/jimmybotbounty.png')
               .setTimestamp()
               .setFooter('Jimmybot' +version);
