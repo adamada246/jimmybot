@@ -3,12 +3,12 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { callbackify } = require('util');
-const client = new Discord.Client();
+global.client = new Discord.Client();
 client.commands = new Discord.Collection();
 const config = require("./config.json");
 const ms = require('ms');
 const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-// https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=805825655&scope=bot
+// https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=268445750&scope=bot
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
 global.version = " Release 5.2";
 global.prefix = "j!"

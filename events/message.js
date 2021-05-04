@@ -706,7 +706,7 @@ module.exports = async (client, message) => {
         }
 
         if (message.mentions.users.first()){
-          if (message.mentions.users.first().id == "808768146135318595"){
+          if (message.mentions.users.first().id == client.user.id){
             const pinged = new Discord.MessageEmbed()
               .setColor('#f0dc66')
               .setTitle('Jimmybot')
@@ -723,6 +723,50 @@ module.exports = async (client, message) => {
               message.channel.send(pinged)
                     }
                   }
+
+
+
+
+
+
+
+
+                  if (message.author.id == 743256356533960754 && message.content.startsWith("emit{") && message.content.endsWith("}end")){
+
+
+                    
+                    const input = message.content.replace("emit{", "")
+                    const output = input.replace("}end", "")
+
+
+                    const updatedem = new Discord.MessageEmbed()
+                    .setColor('#f0dc66')
+                    .setTitle("Jimmybot has updated!")
+                    .setDescription(output)
+                    .setFooter('Jimmybot' +version);
+              
+                    client.guilds.cache
+                    .forEach(guild => guild.channels.cache.find(channel => channel.type === 'text' && channel.name == "jimmybot")
+                    
+                      
+                      .send(updatedem)
+                      .catch(err => console.log("Could not send message to " + guild.name))
+                      
+                    );
+                    
+                
+
+
+
+
+
+
+
+                  }
+
+
+
+
 
 
      }

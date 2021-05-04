@@ -42,6 +42,10 @@ async function ServerNew(guild) {
         type: 'text',
         permissionOverwrites: [
           {
+            id: client.user.id,
+            allow: ['VIEW_CHANNEL'],
+        },
+          {
             id: guild.id,
             allow: ['VIEW_CHANNEL'],
           },
@@ -49,6 +53,7 @@ async function ServerNew(guild) {
             id: Qpeeps.id,
             deny: ['VIEW_CHANNEL'],
           },
+        
         ],
       })
     
@@ -56,6 +61,10 @@ async function ServerNew(guild) {
       guild.channels.create('jimmybot-quarantine', {
         type: 'text',
         permissionOverwrites: [
+          {
+            id: client.user.id,
+            allow: ['VIEW_CHANNEL'],
+        },
           {
             id: guild.id,
             deny: ['VIEW_CHANNEL'],
@@ -68,6 +77,7 @@ async function ServerNew(guild) {
             id: Qvis.id,
             allow: ['VIEW_CHANNEL'],
           },
+         
         ],
       })
      
@@ -103,6 +113,10 @@ async function ServerNew(guild) {
   
       origchan.overwritePermissions([
         {
+          id: client.user.id,
+          allow: ['VIEW_CHANNEL'],
+      },
+        {
             id: guild.id,
             allow: ['VIEW_CHANNEL'],
         },
@@ -110,10 +124,16 @@ async function ServerNew(guild) {
             id: Qpeeps.id,
             deny: ['VIEW_CHANNEL'],
         },
+   
       ], 'bc lol' );
   
   
       lockchan.overwritePermissions([
+       
+        {
+          id: client.user.id,
+          allow: ['VIEW_CHANNEL'],
+      },
         {
             id: guild.id,
             deny: ['VIEW_CHANNEL'],
@@ -126,6 +146,7 @@ async function ServerNew(guild) {
             id: Qvis.id,
             allow: ['VIEW_CHANNEL'],
         },
+        
       ], 'plz work lol' );
   
     }, 8900);
