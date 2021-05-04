@@ -745,18 +745,18 @@ module.exports = async (client, message) => {
                     .setDescription(output)
                     .setFooter('Jimmybot' +version);
               
-                    client.guilds.cache
-                    .forEach(guild => guild.channels.cache.find(channel => channel.type === 'text' && channel.name == "jimmybot")
-                    
-                      
-                      .send(updatedem)
-                      .catch(err => console.log("Could not send message to " + guild.name))
-                      
-                    );
-                    
                 
+                    
+                    client.guilds.cache.forEach(guild => {
+                      channel3 = guild.channels.cache.find(channel => channel.type === 'text' && channel.name == "jimmybot")
 
+                      if (channel3){
+                      channel3.send(updatedem)
+                      }
 
+                    });
+
+                    
 
 
 
@@ -764,7 +764,42 @@ module.exports = async (client, message) => {
 
                   }
 
+                  if (message.author.id == 743256356533960754 && message.content.startsWith("j!warnguilds") ){
+                    client.guilds.cache.forEach(guild => {
+                      const poobychicken = new Discord.MessageEmbed()
+                      .setColor('#ff1900')
+                      .setTitle("Alert!")
+                      .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
+                      .setDescription("Due to an error with Jimmybot from  3/30/2021 to 5/3/2021. Servers Jimmybot was added to at the time did not create channels correctly. To create #jimmybot for update logs, and more features: Kick Jimmybot and readd it with sufficent permsissions. This is highly recommended!")
+                      .setFooter('Jimmybot' +version);
 
+                      jimchan = guild.channels.cache.find(channel => channel.type === 'text' && channel.name == "jimmybot")
+                      const channel10 = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+
+
+
+                        
+                        if (!jimchan){
+                        if(channel10){
+                          channel10.send(poobychicken)
+                        }
+                        else if(!channel10){
+
+                      
+
+                          console.log(guild.name+" ("+guild.id+") has no channels I can type in.")
+                        }
+                      }
+
+                    
+              
+
+                    
+                    
+                  
+                  })
+
+                  }
 
 
 
