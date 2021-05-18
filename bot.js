@@ -32,3 +32,22 @@ fs.readdir('./events/', (err, files) => {
 })
   
 client.login(config.BOT_TOKEN);
+
+
+const http = require("http")
+const express = require('express'); // make sure to install express from npm
+const app = express();
+app.use(express.json({extended: false}))
+app.post("/dblwebhook", async (req, res) => { // make sure you put as http://your-server-name/dblwebhook
+  if(req.headers.authorization) {
+    if(req.headers.authorization === mewhenthepoop09) { // replace webhook_secret with your webhook secret (the one you put in your application)
+      res.send({status: 200});
+      console.log(req.body.id) // logs the user id who voted
+    } else {
+      res.send({status: 401, error: 'The auth received does not match the one in your config file.'})
+    }
+  } else {
+    res.send({status: 403, error: 'There was no auth header in the webhook'})
+  }
+})
+http.createServer(app).listen(80); // or use another port

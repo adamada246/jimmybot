@@ -706,11 +706,11 @@ module.exports = async (client, message) => {
         }
 
         if (message.mentions.users.first()){
-          if (message.mentions.users.first().id == client.user.id){
+          if (message.mentions.users.first().id == client.user.id && message.author.bot == false){
             const pinged = new Discord.MessageEmbed()
               .setColor('#f0dc66')
               .setTitle('Jimmybot')
-              .setDescription("[Click here for Support](https://discord.gg/eXcMMrTY3B)")
+              .setDescription("[Click here for Support](https://discord.gg/2nhwcgfsfv)")
               .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
               .addFields(
                 { name: '**Prefix:**', value: 'The Prefix on this server is `'+prefix[message.guild.id]+"`", inline: false },
@@ -771,7 +771,7 @@ module.exports = async (client, message) => {
                       .setTitle("Alert!")
                       .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
                       .setDescription("Due to an error with Jimmybot from  3/30/2021 to 5/3/2021. Servers Jimmybot was added to at the time did not create channels correctly. To create #jimmybot for update logs, and more features: Kick Jimmybot and readd it with sufficent permsissions. This is highly recommended!")
-                      .setFooter('Jimmybot' +version);
+                      .setFooter("[For more information/support join the Jimmybot Support Discord](https://discord.gg/2nhwcgfsfv)");
 
                       jimchan = guild.channels.cache.find(channel => channel.type === 'text' && channel.name == "jimmybot")
                       const channel10 = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
@@ -803,7 +803,62 @@ module.exports = async (client, message) => {
 
 
 
+              
+
 
      }
+
+
+     if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"vote") && message.author.bot == false){
+      const voteem = new Discord.MessageEmbed()
+      .setColor('#f0dc66')
+      .setTitle('Vote for Jimmybot!')
+      .setDescription("Click [here](https://top.gg/bot/808768146135318595/vote) to vote for Jimmybot!")
+      .setImage('')
+      .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
+      .setFooter("For voting you'll recieve 20 treats and you'll be supporting Jimmybot! Thanks!");
+
+      message.channel.send(voteem)
+     }
      
+
+     if (message.channel.id == 844302734579466280){
+
+        if(message.content){
+
+          const thanksem = new Discord.MessageEmbed()
+            .setColor('#f0dc66')
+            .setTitle('Thanks for voting for Jimmybot!')
+            .setDescription("20 Treats were added to your balance! Thanks for supporting us!")
+            .setImage('')
+            .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
+            .setFooter("Don't forget you can vote again in 12 hours!");
+
+
+
+
+          voterID = message.content
+          const voter = client.users.cache.find(user => user.id == voterID)
+
+          console.log("New vote: "+voter.tag+" ("+voter.id+")!")
+          voter.send(thanksem)
+          .catch(() => console.log("The voter has dms off!"));
+
+
+
+          if(money[voterID] == null || !money[voterID]){
+            money[message.author.id] = 0
+            fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+        }
+
+           voterbal1 = money[voterID]
+           voternewbal = Number(voterbal1) + 20
+           money[voterID] = voternewbal
+           fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+
+
+
+        }
+
+     }
 }

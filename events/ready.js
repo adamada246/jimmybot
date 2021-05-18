@@ -24,4 +24,7 @@ module.exports = (client, msg) => {
   
 
 
+    console.log("On "+client.guilds.cache.size+" servers.")
+    console.log("On "+client.channels.cache.size+" channels.")
+
 }
