@@ -813,7 +813,7 @@ module.exports = async (client, message) => {
       const voteem = new Discord.MessageEmbed()
       .setColor('#f0dc66')
       .setTitle('Vote for Jimmybot!')
-      .setDescription("Click [here](https://top.gg/bot/808768146135318595/vote) to vote for Jimmybot!")
+      .setDescription("Click [here](https://top.gg/bot/808768146135318595/vote) and/or [here](https://discordbotlist.com/bots/jimmybot/upvote) to vote for Jimmybot!")
       .setImage('')
       .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
       .setFooter("For voting you'll recieve 20 treats and you'll be supporting Jimmybot! Thanks!");
