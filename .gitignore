@@ -1,10 +1,11 @@
 #keeps the token of the bot supa safe
 config.json
-storage/money.json
+
 
 # Don't track content of these folders
 node_modules/
 dum old stuff/
+storage/
 
 
 # Compiled source #

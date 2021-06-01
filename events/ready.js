@@ -26,5 +26,10 @@ module.exports = (client, msg) => {
 
     console.log("On "+client.guilds.cache.size+" servers.")
     console.log("On "+client.channels.cache.size+" channels.")
+    console.log("Servers I'm on:")
+    client.guilds.cache.forEach(guild => {
+        var memberCount = guild.memberCount
+       console.log("`"+guild.name+"` ("+guild.id+") " + "("+memberCount+").")
 
+      });
 }
