@@ -14,8 +14,7 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
         prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
         giver = message.author.id
         giverrecall = message.author
-        
-        var path = require('path'),
+        stealing = require(__parentDir+'/storage/stealing.json'); // path may vary
         moneydir = path.join(__dirname + '/../storage/money.json')
 
 
@@ -31,13 +30,21 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
 
 
     async function secondfunction (message) {
-        reciever = message.mentions.users.first().id
+        stealeeID = message.mentions.users.first().id
         stealee = message.mentions.users.first()
 
        
 
         if(message.mentions.users.first() == message.author){
           message.reply("You can't steal from yourself!")
+        }
+        else{
+          if (stealing[stealeeID] == false || !stealing[stealeeID]){
+            //continue
+          }
+          else{
+            message.reply("Looks like the person you tried to steal from has a Jimmy guarding them! The Jimmy stole 10 treats from you and gave it to the person you tried to steal from.")
+          }
         }
 
         
