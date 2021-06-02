@@ -9,6 +9,12 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
   
 	execute(message ) {
        
+
+         function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+
+
         path = require('path'),
         __parentDir = path.dirname(module.parent.filename);
         prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
@@ -29,6 +35,8 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
     } 
 
 
+
+
     async function secondfunction (message) {
         stealeeID = message.mentions.users.first().id
         stealee = message.mentions.users.first()
@@ -40,12 +48,46 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
         }
         else{
           if (stealing[stealeeID] == false || !stealing[stealeeID]){
-            //continue
+            recoilchance = getRandomInt(5)
+            if (recoilchance == 0){
+              recoilamt = getRandomInt(100)
+              message.reply("Looks like "+stealee.tag+" caught you in the act! `"+recoilamt+"%` of your treats have been given to them! Tough luck.")
+            }
+            else{
+              stealamt = getRandomInt(100)
+              stealfnc(message, stealamt)
+            }
           }
           else{
+            jimmychance = getRandomInt(9)
+
+            if(jimmychance !== 0){
             message.reply("Looks like the person you tried to steal from has a Jimmy guarding them! The Jimmy stole 10 treats from you and gave it to the person you tried to steal from.")
+              //opposite of steal code goes here
+            }
+            else if(jimmychance == 0){
+             message.reply("Wow! The person you tried to steal from had a Jimmy guarding their treats, but luckily it was sleeping.")
+              recoilamt = getRandomInt(100)
+              stealfnc(message, stealamt)
+            }
           }
         }
+
+        async function stealfnc (message, stealamt) {
+          //make dm to stealee 30 seconds waiting
+          stealeemon = money[message.mentions.users.first().id]
+          percent = stealamt/100
+          givemoneyamt = stealeemon * percent
+          stealermon = money[message.author.id]
+          newmongive = stealermon + givemoneyamt
+          newmontake = stealeemon - givemoneyamt
+          money[message.author.id] = newmongive
+          money[message.mentions.users.first().id] = newmontake
+          fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+         
+        }
+
+
 
         
       }
