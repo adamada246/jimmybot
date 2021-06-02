@@ -81,7 +81,36 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
           }
         }
 
+    async function checkforreactions(message, originalmessage) {
+          message.awaitReactions((reaction, user) => user.id == stealeeID2 && (reaction.emoji.name == '🚨'),
+          { max: 1, time: 300000 }).then(collected => {
+                  if (collected.first().emoji.name == '🚨') {
+                    
+                      
+                  }
+          }).catch(() => {
+                  stealeemon = money[originalmessage.mentions.users.first().id]
+                      percent = stealamt/100
+                      givemoneyamt = stealeemon * percent
+                      stealermon = money[originalmessage.author.id]
+                      newmongive = stealermon + givemoneyamt
+                      newmontake = stealeemon - givemoneyamt
+                      money[originalmessage.author.id] = newmongive
+                      money[originalmessage.mentions.users.first().id] = newmontake
+                      fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+          });
+          }
+
+
         async function stealfnc (message, stealamt) {
+          const originalmessage = message
+          message.mentions.users.first().send("You're being stolen from by `"+message.author.tag+"`! React to this message within 30 seconds to catch them!")
+          .then(async function (message, originalmessage``) {
+            message.react("🚨")
+            checkforreactions(message, originalmessage);
+          })     
+
+
           //make dm to stealee 30 seconds waiting
           stealeemon = money[message.mentions.users.first().id]
           percent = stealamt/100
