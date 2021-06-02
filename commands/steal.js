@@ -63,7 +63,15 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
 
             if(jimmychance !== 0){
             message.reply("Looks like the person you tried to steal from has a Jimmy guarding them! The Jimmy stole 10 treats from you and gave it to the person you tried to steal from.")
-              //opposite of steal code goes here
+             stealeemon = money[message.author.id]
+              stealermon = money[message.mentions.users.first().id]
+              newmongive = stealermon + 10
+              newmontake = stealeemon - 10
+              money[message.mentions.users.first().id] = newmongive
+              money[message.author.id] = newmontake
+              fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+              message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to Jimmy! They've given you 10 treats.")
+          .catch(() => console.log("user does not have dms on"));
             }
             else if(jimmychance == 0){
              message.reply("Wow! The person you tried to steal from had a Jimmy guarding their treats, but luckily it was sleeping.")
