@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
+client.stealcooldown = new Map();
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
 money = require(__parentDir+'/storage/money.json'); // path may vary
+const ms = require('ms');
   module.exports = {
 	name: 'steal',
 	description: 'ok',
@@ -10,9 +12,24 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
 	execute(message ) {
        
 
+    if(!client.stealcooldown.get(message.author.id)){
+      client.stealcooldown.set(message.author.id, "false")
+    }
+
+
+
+if (client.stealcooldown.get(message.author.id) == "false"){
+
          function getRandomInt(max) {
       return Math.floor(Math.random() * Math.floor(max));
     }
+
+    if(money[message.author.id] == null){
+      money[message.author.id] = 0
+      fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+     }
+
+     
 
 
         path = require('path'),
@@ -52,6 +69,12 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
             if (recoilchance == 0){
               recoilamt = getRandomInt(100)
               message.reply("Looks like "+stealee.tag+" caught you in the act! `"+recoilamt+"%` of your treats have been given to them! Tough luck.")
+
+              client.stealcooldown.set(message.author.id, "true")
+              setTimeout(() => {
+                client.stealcooldown.set(message.author.id, "false")
+              }, ms("5m")); 
+      
             }
             else{
               stealamt = getRandomInt(100)
@@ -71,7 +94,14 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
               money[message.author.id] = newmontake
               fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
               message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to Jimmy! They've given you 10 treats.")
+              
+              
           .catch(() => console.log("user does not have dms on"));
+          client.stealcooldown.set(message.author.id, "true")
+          setTimeout(() => {
+            client.stealcooldown.set(message.author.id, "false")
+          }, ms("5m")); 
+  
             }
             else if(jimmychance == 0){
              message.reply("Wow! The person you tried to steal from had a Jimmy guarding their treats, but luckily it was sleeping.")
@@ -81,52 +111,81 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
           }
         }
 
-    async function checkforreactions(message, originalmessage) {
-          message.awaitReactions((reaction, user) => user.id == stealeeID2 && (reaction.emoji.name == '🚨'),
-          { max: 1, time: 300000 }).then(collected => {
-                  if (collected.first().emoji.name == '🚨') {
-                    
-                      
-                  }
-          }).catch(() => {
-                  stealeemon = money[originalmessage.mentions.users.first().id]
-                      percent = stealamt/100
-                      givemoneyamt = stealeemon * percent
-                      stealermon = money[originalmessage.author.id]
-                      newmongive = stealermon + givemoneyamt
-                      newmontake = stealeemon - givemoneyamt
-                      money[originalmessage.author.id] = newmongive
-                      money[originalmessage.mentions.users.first().id] = newmontake
-                      fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
-          });
-          }
-
-
+        
         async function stealfnc (message, stealamt) {
-          const originalmessage = message
-          message.mentions.users.first().send("You're being stolen from by `"+message.author.tag+"`! React to this message within 30 seconds to catch them!")
-          .then(async function (message, originalmessage``) {
-            message.react("🚨")
-            checkforreactions(message, originalmessage);
-          })     
-
-
-          //make dm to stealee 30 seconds waiting
-          stealeemon = money[message.mentions.users.first().id]
-          percent = stealamt/100
-          givemoneyamt = stealeemon * percent
-          stealermon = money[message.author.id]
-          newmongive = stealermon + givemoneyamt
-          newmontake = stealeemon - givemoneyamt
-          money[message.author.id] = newmongive
-          money[message.mentions.users.first().id] = newmontake
-          fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+          message.channel.send("Got it! The user you stole from has 15 seconds to catch you!")
+          message.mentions.users.first().send("You're being stolen from by `"+message.author.tag+"`! React to this message within 15 seconds to catch them!")
          
-        }
+          
+          .catch(() => message.channel.send("Oh no! This user does not have dms on!").then(()=>{return}))
+          
+          
+          .then(function (messagea) {
+            messagea.react("🚨")
+            setTimeout(() => {
+              const reactMessage = message.channel.messages.cache.get(messagea.id);
+              const reactionsYes = messagea.reactions.cache.get("🚨");
+
+              if (reactionsYes.count == 1){
+                console.log("poop")
+                stealeemon = money[message.mentions.users.first().id]
+                percent = stealamt/100
+                givemoneyamt = stealeemon * percent
+                stealermon = money[message.author.id]
+                newmongive = stealermon + givemoneyamt
+                newmontake = stealeemon - givemoneyamt
+                money[message.author.id] = newmongive
+                money[message.mentions.users.first().id] = newmontake
+                fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+                message.channel.send(message.author.tag+" stole "+givemoneyamt+" ("+stealamt+"%) treats from "+message.mentions.users.first().tag+".")
+                client.stealcooldown.set(message.author.id, "true")
+                setTimeout(() => {
+                  client.stealcooldown.set(message.author.id, "false")
+                }, ms("5m")); 
+              }
+
+              if (reactionsYes.count == 2) {
+                console.log("pee")
+                message.reply("Looks like the person you tried to steal from caught you! As compensation, you gave them 10 treats.")
+                stealeemon = money[message.author.id]
+                 stealermon = money[message.mentions.users.first().id]
+                 newmongive = stealermon + 10
+                 newmontake = stealeemon - 10
+                 money[message.mentions.users.first().id] = newmongive
+                 money[message.author.id] = newmontake
+                 fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+                 message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to you catching them! They've given you 10 treats.")
+                 client.stealcooldown.set(message.author.id, "true")
+                 setTimeout(() => {
+                  client.stealcooldown.set(message.author.id, "false")
+                }, ms("5m")); 
+              }
+              else if(!reactionsYes){
+                console.log("oh no")
+                message.channel.send("Jimmybot ran into an error: `NO REACTIONS PRESENT`. If this problem persists join my support server, which you can find by pinging me.")
+                client.stealcooldown.set(message.author.id, "true")
+                setTimeout(() => {
+                  client.stealcooldown.set(message.author.id, "false")
+                }, ms("5m")); 
+              }
+            }, ms("15s")); 
+    
+
+
+
+
+        })
 
 
 
         
       }
+    }
+    
+  }
+  if (client.stealcooldown.get(message.author.id) == "true"){
+    message.channel.send("Slow down there, "+message.author.tag+"! You're on cooldown! You can only run this command every 5 minutes.")
+  }
+
 	},
 };

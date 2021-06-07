@@ -31,6 +31,7 @@ module.exports = async (client, message) => {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+ 
 
   if (message.guild === null){
     
@@ -96,6 +97,12 @@ module.exports = async (client, message) => {
         money[message.author.id] = 0
         fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
        }
+     
+       fullmoney = Number( money[message.author.id]).toFixed(0);
+       money[message.author.id] = fullmoney
+       fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+
+
        4
        if(botstorage4[message.author.id] == null ){
         botstorage4[message.author.id] = false
@@ -405,6 +412,16 @@ module.exports = async (client, message) => {
           if (!client.commands.has('sad')) return;
           try {
             client.commands.get('sad').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"steal") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('steal')) return;
+          try {
+            client.commands.get('steal').execute(message , version);
           } catch (error) {
             console.error(error);
             message.reply('there was an error trying to execute that command!');
