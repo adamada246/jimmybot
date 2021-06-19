@@ -24,7 +24,7 @@ module.exports = async (client, message) => {
   global.authorID = message.author.id; // or set it as the mentioned user's ID, etc.
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
   global.adam =  client.users.cache.get('743256356533960754')
-  global.julian = client.users.cache.get('739264630559604816')
+ 
 
 
   function getRandomInt(max) {
@@ -153,6 +153,16 @@ module.exports = async (client, message) => {
           if (!client.commands.has('blacklistuser')) return;
           try {
             client.commands.get('blacklistuser').execute(message );
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
+
+        if (message.content.toLowerCase().startsWith("j!devtest")) {
+          if (!client.commands.has('testbutton')) return;
+          try {
+            client.commands.get('testbutton').execute(message );
           } catch (error) {
             console.error(error);
             message.reply('there was an error trying to execute that command!');
@@ -318,13 +328,7 @@ module.exports = async (client, message) => {
         }
 
         if (message.content.toLowerCase().startsWith("bowie") && message.content.toLowerCase().endsWith("bowie") && message.author.bot == false && botstorage1[message.guild.id] == true) {
-          if (!client.commands.has('bowie')) return;
-          try {
-            client.commands.get('bowie').execute(message , version);
-          } catch (error) {
-            console.error(error);
-            message.reply('there was an error trying to execute that command!');
-          }
+          message.reply("This command is no longer valid.")
         }
       
         if (message.content.toLowerCase().includes(prefix[message.guild.id]+"food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
@@ -439,13 +443,7 @@ module.exports = async (client, message) => {
         }
 
         if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"friend") && message.author.bot == false && botstorage1[message.guild.id] == true) {
-          if (!client.commands.has('friend')) return;
-          try {
-            client.commands.get('friend').execute(message , version);
-          } catch (error) {
-            console.error(error);
-            message.reply('there was an error trying to execute that command!');
-          }
+          message.reply("This command is no longer valid.")
         }
       
         if (message.content.toLowerCase().includes(prefix[message.guild.id]+"owner") && message.author.bot == false && botstorage1[message.guild.id] == true) {

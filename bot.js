@@ -10,10 +10,9 @@ const ms = require('ms');
 const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=268445750&scope=bot
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
-global.version = " Release 6.0";
+global.version = "Pre-release 7.0";
 global.prefix = "j!"
-global.date = "5/4/2021"
-
+global.date = "6/8/2021"
 
 
 for (const file of commandFile) {
@@ -30,6 +29,7 @@ fs.readdir('./events/', (err, files) => {
     client.on(eventName, arg => eventHandler(client, arg));
   })
 })
+
   
 client.login(config.BOT_TOKEN);
 

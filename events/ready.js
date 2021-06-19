@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 
 const activities_list = [ 
     "j!tricks", 
-    "with my dev, @Paper Towel#2880",
+    "with my dev, @Water Bottle#0246",
     "Build " + version,
-    "with my dev, @Paper Towel#2880",
+    "with my dev, @Water Bottle#0246",
     "j!tricks", 
 ]; // creates an arraylist containing phrases you want your bot to switch through.
 
