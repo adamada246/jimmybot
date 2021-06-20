@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 global.fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const ms = require('ms');
-
+client.bountycooldown = new Map();
 
 
 
@@ -76,7 +76,9 @@ try{
      function poopego(message) {
      
       
-    
+      if(!client.bountycooldown.get(message.author.id)){
+        client.bountycooldown.set(message.author.id, "false")
+      }
 
       if(botstorage1[message.guild.id] == null){
         botstorage1[message.guild.id] = true
@@ -103,7 +105,7 @@ try{
        fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
 
 
-       4
+       
        if(botstorage4[message.author.id] == null ){
         botstorage4[message.author.id] = false
         fs.writeFileSync(__parentDir+'/storage/timeout.json', JSON.stringify(botstorage4));
@@ -647,16 +649,17 @@ try{
 
         function nomorecommands(message) {
           setTimeout(function(){ 
-          storage4[message.author.id] = true
-          fs.writeFileSync(__parentDir+'/storage/timeout.json', JSON.stringify(storage4));
+            client.bountycooldown.set(message.author.id, "true")
+          
+     
           setTimeout(function(){ 
-            storage4[message.author.id] = false
-            fs.writeFileSync(__parentDir+'/storage/timeout.json', JSON.stringify(storage4));
+            client.bountycooldown.set(message.author.id, "false")
+           
           }, ms("30s"));
         }, ms("5"));
         }
-
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == false ) { 
+        
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && client.bountycooldown.get(message.author.id) == "false" ) { 
           if (!client.commands.has('bounty')) return;
           try {
             client.commands.get('bounty').execute(message , version);
@@ -671,7 +674,7 @@ try{
           }
         }
 
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == true ) { 
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && client.bountycooldown.get(message.author.id) == "true" ) { 
           try {
             message.reply("There's a 30 second cooldown for this command!")
           } catch (error) { const errorem = new Discord.MessageEmbed()

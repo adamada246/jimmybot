@@ -10,7 +10,7 @@ const activities_list = [
 ]; // creates an arraylist containing phrases you want your bot to switch through.
 
 
-module.exports = (client, msg) => {
+module.exports = (client) => {
     
     console.log('I am ready!'); 
     
@@ -31,5 +31,5 @@ module.exports = (client, msg) => {
         var memberCount = guild.memberCount
        console.log("`"+guild.name+"` ("+guild.id+") " + "("+memberCount+").")
 
-      });
+      })
 }
