@@ -44,16 +44,17 @@ module.exports = {
     .setDescription("Page 1")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command {page}**', inline: false },
+      { name: '‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎', value: '‏‏‎**HELP COMMAND**', inline: false },
       { name: ''+prefix[message.guild.id]+'tricks', value: 'displays a list of all commands', inline: true },
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command**', inline: false },
+      { name: '**Bot Oriented Commands**', value: '**'+prefix[message.guild.id]+'command**', inline: false },
       { name: ''+prefix[message.guild.id]+'invite', value: 'invite Jimmybot to your server', inline: true },
-      { name: ''+prefix[message.guild.id]+'changelog', value: 'shows changes between versions', inline: true },
-      { name: ''+prefix[message.guild.id]+'admin', value: 'brings up a list of admin commands', inline: true },
-      { name: ''+prefix[message.guild.id]+'status', value: 'displays if Jimmybot is on or off', inline: true },
+      { name: '‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ', value: '‎**Basic Commands**', inline: false },
+      { name: ''+prefix[message.guild.id]+'hi', value: 'jimmy says hello', inline: true },
+      { name: ''+prefix[message.guild.id]+'sus', value: ' a reference to the popular hit video game amogus!!111!!1', inline: true },
+      { name: ''+prefix[message.guild.id]+'portrait', value: 'displays a portrait of jimmy', inline: true },
+      { name: ''+prefix[message.guild.id]+'sad', value: ' makes jimmy sad :(', inline: true },
      // { name: ''+prefix[message.guild.id]+'bail', value: 'a command used to pay bail to get out of quarantine', inline: true },biden
-      { name: ''+prefix[message.guild.id]+'gm', value: 'turns on jimmybot', inline: true },
-      { name: ''+prefix[message.guild.id]+'gn', value: 'turns off jimmybot', inline: true },
+   
 
     )
     .setFooter("This is page 1/3! To see another page use the arrows below or type in "+prefix[message.guild.id]+"tricks {page}");
@@ -65,22 +66,24 @@ module.exports = {
     .setDescription("Page 2")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command**', inline: false },
-      { name: ''+prefix[message.guild.id]+'hi', value: 'jimmy says hello', inline: true },
-      { name: ''+prefix[message.guild.id]+'sus', value: ' a reference to the popular hit video game amogus!!111!!1', inline: true },
-      { name: ''+prefix[message.guild.id]+'portrait', value: 'displays a portrait of jimmy', inline: true },
-      { name: ''+prefix[message.guild.id]+'sad', value: ' makes jimmy sad :(', inline: true },
+      { name: '‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎', value: '**Basic Commands (Continued)**', inline: false },
       { name: ''+prefix[message.guild.id]+'apple', value: ' when the apple is sus :rofl: :flushed:', inline: true },
      // { name: ''+prefix[message.guild.id]+'suitup', value: 'makes you temporarily put on a hazmat suit to visit the quarantine', inline: true },
       { name: ''+prefix[message.guild.id]+'owner', value: 'displays the creator of jimmybot', inline: true },
       { name: ''+prefix[message.guild.id]+'talent', value: "displays jimmy's secret talent", inline: true },
       { name: ''+prefix[message.guild.id]+'about', value: 'displays information about jimmybot', inline: true },
-      { name: ''+prefix[message.guild.id]+'bounty', value: 'chooses a user to be a target for a bounty', inline: true },
+
       { name: ''+prefix[message.guild.id]+'biden', value: 'which ending will you get?', inline: true },
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command @user amount **', inline: false },
-      { name: ''+prefix[message.guild.id]+'pay', value: 'pays the mentioned user the selected amount of treats', inline: true },
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command amount **', inline: false },
-      { name: ''+prefix[message.guild.id]+'gamble', value: 'gamble a specific amount of treats to either win/lose treats', inline: true },
+      { name: '‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ', value: '‎**Economy Commands**', inline: false },
+      { name: ''+prefix[message.guild.id]+'bal (optional @user)', value: 'check the balance of yourself or another user', inline: true },
+      { name: ''+prefix[message.guild.id]+'bounty', value: 'chooses a user to be a target for a bounty', inline: true },
+      { name: ''+prefix[message.guild.id]+'catch [@user]', value: 'must be run AFTER '+prefix[message.guild.id]+'bounty, allows ANY user to catch the bounty target', inline: true },
+      { name: ''+prefix[message.guild.id]+'steal [@user]', value: 'a command that lets you steal treats from other Jimmybot users!', inline: true },
+
+      { name: ''+prefix[message.guild.id]+'pay [@user] [amount]', value: 'pays the mentioned user the selected amount of treats', inline: true },
+
+      
+     
      
     )
     .setFooter("This is page 2/3! To see another page use the arrows below or type in "+prefix[message.guild.id]+"tricks {page}");
@@ -91,15 +94,16 @@ module.exports = {
     .setDescription("Page 3")
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command  @user**', inline: false },
-      { name: ''+prefix[message.guild.id]+'steal', value: 'a command that lets you steal treats from other Jimmybot users!', inline: true },
-      { name: ''+prefix[message.guild.id]+'catch', value: 'must be run AFTER '+prefix[message.guild.id]+'bounty, allows ANY user to catch the bounty target', inline: true },
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command** optional: @user', inline: false },
-      { name: ''+prefix[message.guild.id]+'bal', value: 'check the balance of yourself or another user', inline: true },
-      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command** optional (admins only): {true/false}', inline: false },
+     
+      { name: ' ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎', value: '‏‏‎**Moderator Commands**', inline: false },
+
+      { name: ''+prefix[message.guild.id]+'admin', value: 'brings up a list of admin commands', inline: true },
+      { name: ''+prefix[message.guild.id]+'status', value: 'displays if Jimmybot is on or off in this server', inline: true },
+      { name: ''+prefix[message.guild.id]+'gm', value: 'turns on jimmybot on this server', inline: true },
+      { name: ''+prefix[message.guild.id]+'gn', value: 'turns off jimmybot on this server', inline: true },
   //    { name: ''+prefix[message.guild.id]+'quarantines', value: 'displays the current status of quarantines', inline: true },
       { name: ''+prefix[message.guild.id]+'bounties', value: 'displays the current status of bounties', inline: true },
-      { name: '**Format:**', value: '**command**', inline: false },
+      { name: '**Easter Eggs:**', value: '**THESE DO NOT USE j!COMMAND, JUST PUT THE WORD IN CHAT**', inline: false },
    //   { name: 'fart', value: 'A risky thing to say if quarantines are on {does not work on admins}', inline: true },
       { name: 'food', value: 'Easter egg!', inline: true },
       { name: 'play', value: 'Easter egg!', inline: true },

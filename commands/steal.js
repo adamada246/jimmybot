@@ -65,18 +65,27 @@ if (client.stealcooldown.get(message.author.id) == "false"){
         }
         else{
           if (stealing[stealeeID] == false || !stealing[stealeeID]){
-            recoilchance = getRandomInt(5)
+            recoilchance = getRandomInt(6)
             if (recoilchance == 0){
               recoilamt = getRandomInt(100)
-              message.reply("Looks like "+stealee.tag+" caught you in the act! `"+recoilamt+"%` of your treats have been given to them! Tough luck.")
+              message.reply("Oh no! You accidentally triggered the alarm while trying to steal! `"+recoilamt+"%` of your treats have been given to the person you tried to steal from! Tough luck.")
+              percentpoop = (recoilamt/100)
 
+              stealeemon = money[message.author.id]
+              stealermon = money[message.mentions.users.first().id]
+              newmongive = Number(stealermon) * (1+Number(percentpoop))
+              newmontake = Number(stealeemon ) * (1-Number(percentpoop))
+              money[message.mentions.users.first().id] = newmongive
+              money[message.author.id] = newmontake
+              fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+           
               client.stealcooldown.set(message.author.id, "true")
               setTimeout(() => {
                 client.stealcooldown.set(message.author.id, "false")
               }, ms("5m")); 
       
             }
-            else{
+            else if (recoilchance !== 0){
               stealamt = getRandomInt(100)
               stealfnc(message, stealamt)
             }
@@ -88,8 +97,8 @@ if (client.stealcooldown.get(message.author.id) == "false"){
             message.reply("Looks like the person you tried to steal from has a Jimmy guarding them! The Jimmy stole 10 treats from you and gave it to the person you tried to steal from.")
              stealeemon = money[message.author.id]
               stealermon = money[message.mentions.users.first().id]
-              newmongive = stealermon + 10
-              newmontake = stealeemon - 10
+              newmongive = Number(stealermon) + 10
+              newmontake = Number(stealeemon) - 10
               money[message.mentions.users.first().id] = newmongive
               money[message.author.id] = newmontake
               fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
@@ -183,7 +192,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
     }
     
   }
-  if (client.stealcooldown.get(message.author.id) == "true"){
+  else if (client.stealcooldown.get(message.author.id) == "true"){
     message.channel.send("Slow down there, "+message.author.tag+"! You're on cooldown! You can only run this command every 5 minutes.")
   }
 

@@ -141,6 +141,7 @@ function getRandomInt(max) {
         })
         }
       }
+      
     }catch (error) {
       await button.guild
       const channel = button.guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(button.guild.me).has('SEND_MESSAGES'))
@@ -149,7 +150,7 @@ function getRandomInt(max) {
 		.setColor('#CC0909')
 		.setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
 		.setDescription("Button which caused the error: `"+button.id+"`. The error: `"+error+"`.")
-		.setFooter('Error type: BUTTON');
+		.setFooter('Error caught at: ClickButton');
 
         channel.send(errorem).catch(() => channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
       }

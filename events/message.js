@@ -25,13 +25,13 @@ module.exports = async (client, message) => {
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
   global.adam =  client.users.cache.get('743256356533960754')
  
-
+try{
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
- 
+  
 
   if (message.guild === null){
     
@@ -113,9 +113,13 @@ module.exports = async (client, message) => {
         if (!client.commands.has('bail')) return;
         try {
           client.commands.get('bail').execute(message );
-        } catch (error) {
+        } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
           console.error(error);
-          message.reply('there was an error trying to execute that command!');
+         message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
         }
       }
 
@@ -123,9 +127,13 @@ module.exports = async (client, message) => {
         if (!client.commands.has('prefix')) return;
         try {
           client.commands.get('prefix').execute(message );
-        } catch (error) {
+        } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
           console.error(error);
-          message.reply('there was an error trying to execute that command!');
+         message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
         }
       }
 
@@ -133,9 +141,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('goodmorning')) return;
           try {
             client.commands.get('goodmorning').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -143,9 +155,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('blacklistserver')) return;
           try {
             client.commands.get('blacklistserver').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -153,9 +169,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('blacklistuser')) return;
           try {
             client.commands.get('blacklistuser').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -163,9 +183,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('testbutton')) return;
           try {
             client.commands.get('testbutton').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -173,9 +197,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('invite')) return;
           try {
             client.commands.get('invite').execute(client, message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -184,9 +212,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('goodnight')) return;
           try {
             client.commands.get('goodnight').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -195,9 +227,13 @@ module.exports = async (client, message) => {
           try {
             console.log("shop activated")
             client.commands.get('shop').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -205,9 +241,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('catch')) return;
           try {
             client.commands.get('catch').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -216,9 +256,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('balance')) return;
           try {
             client.commands.get('balance').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -226,9 +270,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('pay')) return;
           try {
             client.commands.get('pay').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -237,9 +285,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('status')) return;
           try {
             client.commands.get('status').execute(message );
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -248,9 +300,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('hi')) return;
           try {
             client.commands.get('hi').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -258,9 +314,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('goodboy')) return;
           try {
             client.commands.get('goodboy').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -269,9 +329,13 @@ module.exports = async (client, message) => {
           try {
             result = getRandomInt(3)
             client.commands.get('biden').execute(message , version, result);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -279,9 +343,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('goodboy')) return;
           try {
             client.commands.get('goodboy').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -289,9 +357,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -299,9 +371,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('gamble')) return;
           try {
             client.commands.get('gamble').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -309,9 +385,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -320,9 +400,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('commandslist')) return;
           try {
             client.commands.get('commandslist').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -331,9 +415,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('food')) return;
           try {
             client.commands.get('food').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -345,9 +433,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -355,9 +447,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('play')) return;
           try {
             client.commands.get('play').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -365,9 +461,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -375,9 +475,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('changelog')) return;
           try {
             client.commands.get('changelog').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -386,9 +490,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('dumb')) return;
           try {
             client.commands.get('dumb').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -396,9 +504,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -406,9 +518,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('sus')) return;
           try {
             client.commands.get('sus').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -416,9 +532,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('portrait')) return;
           try {
             client.commands.get('portrait').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -426,9 +546,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('sad')) return;
           try {
             client.commands.get('sad').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -436,9 +560,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('steal')) return;
           try {
             client.commands.get('steal').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
        
@@ -446,9 +574,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('apple')) return;
           try {
             client.commands.get('apple').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -460,9 +592,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('owner')) return;
           try {
             client.commands.get('owner').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -471,9 +607,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('talents')) return;
           try {
             client.commands.get('talents').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -481,9 +621,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('talents')) return;
           try {
             client.commands.get('talents').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -491,9 +635,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('wrongformat')) return;
           try {
             client.commands.get('wrongformat').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -513,18 +661,26 @@ module.exports = async (client, message) => {
           try {
             client.commands.get('bounty').execute(message , version);
             nomorecommands(message);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
         if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"bounty") && message.author.bot == false && botstorage3[message.guild.id] == true && botstorage4[message.author.id] == true ) { 
           try {
             message.reply("There's a 30 second cooldown for this command!")
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -533,9 +689,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has("about")) return;
           try {
             client.commands.get("about").execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -544,9 +704,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('event')) return;
           try {
             client.commands.get('event').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -554,9 +718,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('adminwarn')) return;
           try {
             client.commands.get('adminwarn').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -564,9 +732,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -575,9 +747,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('adminpanel')) return;
           try {
             client.commands.get('adminpanel').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -585,9 +761,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -597,9 +777,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('turnqoff')) return;
           try {
             client.commands.get('turnqoff').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -608,9 +792,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -618,9 +806,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('turnqon')) return;
           try {
             client.commands.get('turnqon').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -628,9 +820,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -639,9 +835,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('bountiesoff')) return;
           try {
             client.commands.get('bountiesoff').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -649,9 +849,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -659,9 +863,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('bountieson')) return;
           try {
             client.commands.get('bountieson').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -669,9 +877,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('notanadmin')) return;
           try {
             client.commands.get('notanadmin').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -679,9 +891,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('bountystatus')) return;
           try {
             client.commands.get('bountystatus').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
         
@@ -691,9 +907,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('fartstatus')) return;
           try {
             client.commands.get('fartstatus').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -703,7 +923,11 @@ module.exports = async (client, message) => {
           if (!client.commands.has('quarantine')) return;
           try {
             client.commands.get('quarantine').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
             message.reply('stop dming me fart u poo face');
           }
@@ -714,9 +938,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('hazmat')) return;
           try {
             client.commands.get('hazmat').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
       
@@ -724,9 +952,13 @@ module.exports = async (client, message) => {
           if (!client.commands.has('toomanyperms')) return;
           try {
             client.commands.get('toomanyperms').execute(message , version);
-          } catch (error) {
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
             console.error(error);
-            message.reply('there was an error trying to execute that command!');
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
 
@@ -886,4 +1118,14 @@ module.exports = async (client, message) => {
         }
 
      }
+    }
+    catch{
+      const errorem = new Discord.MessageEmbed()
+      .setColor('#CC0909')
+      .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+      .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+      .setFooter('Error caught at: Message');
+
+  message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
+    }
 }
