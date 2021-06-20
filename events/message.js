@@ -294,6 +294,16 @@ module.exports = async (client, message) => {
             message.reply('there was an error trying to execute that command!');
           }
         }
+
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"gamble") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('gamble')) return;
+          try {
+            client.commands.get('gamble').execute(message , version);
+          } catch (error) {
+            console.error(error);
+            message.reply('there was an error trying to execute that command!');
+          }
+        }
       
         if (message.content.toLowerCase().includes(prefix[message.guild.id]+"goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('eastereggwarn')) return;
@@ -422,7 +432,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"steal") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"steal") && message.author.bot == false && botstorage1[message.guild.id] == true) {
           if (!client.commands.has('steal')) return;
           try {
             client.commands.get('steal').execute(message , version);

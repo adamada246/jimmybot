@@ -13,7 +13,8 @@ const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.
 global.version = "Pre-release 7.0";
 global.prefix = "j!"
 global.date = "6/8/2021"
-
+const { MessageButton, MessageActionRow } = require('discord-buttons')
+const disbut = require('discord-buttons')(client);
 
 for (const file of commandFile) {
 	const command = require(`./commands/${file}`);
