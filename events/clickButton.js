@@ -79,7 +79,7 @@ function getRandomInt(max) {
             
     
             client.gamblecooldown.set(userID, "true")
-           
+          
 
             const gambleoutcome = new Discord.MessageEmbed()
 		.setColor('#f0dc66')
@@ -89,12 +89,16 @@ function getRandomInt(max) {
     )
 		.setFooter('You currently have '+money[userID]+" treats total.");
 
+    button.message.edit(button.clicker.user.toString() + ", ", {
 
+      embed: gambleoutcome,
+      components: null
+    })
          
-            button.reply.send(button.clicker.user.toString() + ", ", {
-
-              embed: gambleoutcome
-            })
+          //  button.reply.send(button.clicker.user.toString() + ", ", {
+//
+          //    embed: gambleoutcome
+        //    })
             setTimeout(() => {
               client.gamblecooldown.set(userID, "false")
             }, ms("2m")); 
@@ -127,6 +131,8 @@ function getRandomInt(max) {
             button.reply.send(button.clicker.user.toString() + ", I won't gamble your money!",{
                 ephemeral: true
             })
+            await button.message.fetch()
+            button.message.delete()
             
         }
         else{

@@ -71,7 +71,6 @@ module.exports = {
       { name: ''+prefix[message.guild.id]+'portrait', value: 'displays a portrait of jimmy', inline: true },
       { name: ''+prefix[message.guild.id]+'sad', value: ' makes jimmy sad :(', inline: true },
       { name: ''+prefix[message.guild.id]+'apple', value: ' when the apple is sus :rofl: :flushed:', inline: true },
-      { name: ''+prefix[message.guild.id]+'friend', value: ' shows a pic of one of Jimmys friends!', inline: true },
      // { name: ''+prefix[message.guild.id]+'suitup', value: 'makes you temporarily put on a hazmat suit to visit the quarantine', inline: true },
       { name: ''+prefix[message.guild.id]+'owner', value: 'displays the creator of jimmybot', inline: true },
       { name: ''+prefix[message.guild.id]+'talent', value: "displays jimmy's secret talent", inline: true },
@@ -80,7 +79,8 @@ module.exports = {
       { name: ''+prefix[message.guild.id]+'biden', value: 'which ending will you get?', inline: true },
       { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command @user amount **', inline: false },
       { name: ''+prefix[message.guild.id]+'pay', value: 'pays the mentioned user the selected amount of treats', inline: true },
-     
+      { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command amount **', inline: false },
+      { name: ''+prefix[message.guild.id]+'gamble', value: 'gamble a specific amount of treats to either win/lose treats', inline: true },
      
     )
     .setFooter("This is page 2/3! To see another page use the arrows below or type in "+prefix[message.guild.id]+"tricks {page}");
@@ -92,6 +92,7 @@ module.exports = {
     .setThumbnail('https://cdn.discordapp.com/attachments/797683414857154560/811423274486857748/jimmybotlogo.png')
     .addFields(
       { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command  @user**', inline: false },
+      { name: ''+prefix[message.guild.id]+'steal', value: 'a command that lets you steal treats from other Jimmybot users!', inline: true },
       { name: ''+prefix[message.guild.id]+'catch', value: 'must be run AFTER '+prefix[message.guild.id]+'bounty, allows ANY user to catch the bounty target', inline: true },
       { name: '**Format:**', value: '**'+prefix[message.guild.id]+'command** optional: @user', inline: false },
       { name: ''+prefix[message.guild.id]+'bal', value: 'check the balance of yourself or another user', inline: true },
@@ -104,7 +105,6 @@ module.exports = {
       { name: 'play', value: 'Easter egg!', inline: true },
       { name: 'dumb', value: 'Easter egg!', inline: true },
       { name: 'good boy', value: 'Easter egg!', inline: true },
-      { name: 'bowie', value: 'Easter egg!', inline: true },
     )
     .setFooter("This is page 3/3! To see another page use the arrows below or type in "+prefix[message.guild.id]+"tricks {page}");
 

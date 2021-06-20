@@ -130,10 +130,10 @@ if (client.stealcooldown.get(message.author.id) == "false"){
                 console.log("poop")
                 stealeemon = money[message.mentions.users.first().id]
                 percent = stealamt/100
-                givemoneyamt = stealeemon * percent
+                givemoneyamt = Number(stealeemon) * Number(percent)
                 stealermon = money[message.author.id]
-                newmongive = stealermon + givemoneyamt
-                newmontake = stealeemon - givemoneyamt
+                newmongive = Number(stealermon) +Number( givemoneyamt)
+                newmontake = Number( stealeemon )- Number(givemoneyamt)
                 money[message.author.id] = newmongive
                 money[message.mentions.users.first().id] = newmontake
                 fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
@@ -149,8 +149,8 @@ if (client.stealcooldown.get(message.author.id) == "false"){
                 message.reply("Looks like the person you tried to steal from caught you! As compensation, you gave them 10 treats.")
                 stealeemon = money[message.author.id]
                  stealermon = money[message.mentions.users.first().id]
-                 newmongive = stealermon + 10
-                 newmontake = stealeemon - 10
+                 newmongive = Number(stealermon) + 10
+                 newmontake = Number(stealeemon )- 10
                  money[message.mentions.users.first().id] = newmongive
                  money[message.author.id] = newmontake
                  fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
