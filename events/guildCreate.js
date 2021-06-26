@@ -1,3 +1,4 @@
+
 const Discord = require('discord.js');
 
 async function ServerNew(guild) {
@@ -183,8 +184,11 @@ async function ServerNew(guild) {
 
   
 module.exports = (client, guild) => {
-
+try{
     ServerNew(guild);
-
+}
+catch (error){
+  console.log(error)
+}
 
 }

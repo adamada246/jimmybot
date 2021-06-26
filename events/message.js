@@ -5,10 +5,11 @@ const ms = require('ms');
 client.bountycooldown = new Map();
 
 
-
 module.exports = async (client, message) => {
 
-  
+  try{
+ 
+
 
   path = require('path'),
   __parentDir = path.dirname(module.parent.filename);
@@ -19,13 +20,17 @@ module.exports = async (client, message) => {
   ublacklist = require(__parentDir+'/storage/userbl.json'); // path may vary
   sblacklist = require(__parentDir+'/storage/serverbl.json'); // path may vary
   prefix = require(__parentDir+'/storage/prefix.json');
-
+  inventory = require(__parentDir+'/storage/globalinventory.json'); // path may vary
+  
  money = require(__parentDir+'/storage/money.json'); // path may vary
   global.authorID = message.author.id; // or set it as the mentioned user's ID, etc.
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
-  global.adam =  client.users.cache.get('743256356533960754')
+
+  
+  //startup = await client.channels.cache.get('856547819800363018')
+  //startup.send("@</743256356533960754>")
  
-try{
+
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -90,11 +95,18 @@ try{
         fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage2));
        }
   
+       if(inventory[message.author.id] == null){
+        inventory[message.author.id] = `${message.author.id}:A:B:C:D:E:F:G:H:I:J:K:L:M:N:O:P:Q:R:S:T:U:V:W:X:Y:Z`
+        fs.writeFileSync(__parentDir+'/storage/globalinventory.json', JSON.stringify(inventory));
+       }
+
        if(botstorage3[message.guild.id] == null ){
         botstorage3[message.guild.id] = true
         fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage3));
        }
   
+
+       
        if(money[message.author.id] == null){
         money[message.author.id] = 0
         fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
@@ -182,9 +194,24 @@ try{
         }
 
         if (message.content.toLowerCase().startsWith("j!devtest")) {
-          if (!client.commands.has('testbutton')) return;
+          if (!client.commands.has('devtest')) return;
           try {
-            client.commands.get('testbutton').execute(message );
+            client.commands.get('devtest').execute(message );
+          } catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
+            console.error(error);
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
+          }
+        }
+
+        
+        if (message.content.toLowerCase().startsWith("j!legal") && message.author.bot == false || message.content.toLowerCase().startsWith("j!privacy") && message.author.bot == false || message.content.toLowerCase().startsWith("j!privacypolicy") && message.author.bot == false || message.content.toLowerCase().startsWith("j!EULA") && message.author.bot == false || message.content.toLowerCase().startsWith("j!license") && message.author.bot == false || message.content.toLowerCase().startsWith("j!TOS") && message.author.bot == false ){
+          if (!client.commands.has('legal')) return;
+          try {
+            client.commands.get('legal').execute(message );
           } catch (error) { const errorem = new Discord.MessageEmbed()
   .setColor('#CC0909')
   .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
@@ -339,6 +366,21 @@ try{
             console.error(error);
            message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
+        }
+
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"inv") && message.author.bot == false && botstorage1[message.guild.id] == true || message.content.toLowerCase().startsWith(prefix[message.guild.id]+"inventory") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+          if (!client.commands.has('inventory')) return;
+         // try {
+            
+            client.commands.get('inventory').execute(message , version);
+        /*  }  catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
+            console.error(error);
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
+          } */
         }
       
         if (message.content.toLowerCase().includes("goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
@@ -1122,7 +1164,8 @@ try{
 
      }
     }
-    catch{
+    catch (error){
+      console.log(error)
       const errorem = new Discord.MessageEmbed()
       .setColor('#CC0909')
       .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')

@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 global.fs = require('fs');
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
 const ms = require('ms');
 const { MessageButton, MessageActionRow } = require('discord-buttons')
 
@@ -18,46 +18,16 @@ module.exports = async (client, button) => {
 
     await button.clicker.fetch();
 try{
-    if(button.id.startsWith("DEVTEST_1")){
-        await button.clicker.fetch();
-        if (button.clicker.member.hasPermission('KICK_MEMBERS')){
-          console.log('yes')
-      
-          button.reply.send(button.clicker.user.toString() + ", Ok, i respect it")
-        }
-        else if (!button.clicker.member.hasPermission('KICK_MEMBERS')){
-          console.log('no')
-          
-          button.reply.send(button.clicker.user.toString() +". ur not an admin doo doo face")
-        }
-      
-        
-      }
-      if(button.id.startsWith("DEVTEST_2")){
     
-        button.reply.send(button.clicker.user.toString() + ", pretty boring but ok i guess")
-      }
-      if(button.id.startsWith("DEVTEST_3")){
-        await button.clicker.fetch();
-        console.log(button.clicker.user.tag)
-        if (button.clicker.user.id && button.clicker.user.id == userID){
         
-          button.reply.send(button.clicker.user.toString() +", why bro ")
-        }
-        else{
       
-    
-          button.reply.send(button.clicker.user.toString() +", ur not the author! the user that triggered this message is: "+user.tag)
-        }
-        
-      }
       if(!button.id){
         // this is a URL button, the action has alreayd been taken and in this case i dont want to do anything
       }
 
 
       if(button.id.startsWith("GAMBLE_1")){
-        
+   
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -82,12 +52,12 @@ function getRandomInt(max) {
           
 
             const gambleoutcome = new Discord.MessageEmbed()
-		.setColor('#f0dc66')
-		.setTitle('Gamble outcome!')
+        .setColor('#f0dc66')
+        .setTitle('Gamble outcome!')
     .addFields(
       { name: moneynet > 0 ? "You gained money!" : "You lost money :(", value: moneynet > 0 ? "You gained `"+moneynet+"` treats!" : "You lost `"+Number(moneynet)*-1+"` treats...", inline: false }
     )
-		.setFooter('You currently have '+money[userID]+" treats total.");
+        .setFooter('You currently have '+money[userID]+" treats total.");
 
     button.message.edit(button.clicker.user.toString() + ", ", {
 

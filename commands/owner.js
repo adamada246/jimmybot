@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
 
-
-
   module.exports = {
 	name: 'owner',
 	description: 'ok',
@@ -10,7 +8,7 @@ const Discord = require('discord.js');
     const ownerem = new Discord.MessageEmbed()
     .setColor('#f0dc66')
     .setTitle('heres my owner :dog:')
-    .setDescription("Paper Towel#0246")
+    .setDescription(adam.tag)
     .setImage('')
     .setTimestamp()
     .setFooter('Jimmybot' +version);
