@@ -1,3 +1,4 @@
+const { timeStamp } = require('console');
 const Discord = require('discord.js');
 global.fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -13,16 +14,16 @@ module.exports = async (client, message) => {
 
   path = require('path'),
   __parentDir = path.dirname(module.parent.filename);
-  botstorage1 = require(__parentDir+'/storage/jimmybot.json'); // path may vary
-  botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
-  botstorage3 = require(__parentDir+'/storage/bounties.json'); // path may vary
-  botstorage4 = require(__parentDir+'/storage/timeout.json'); // path may vary
-  ublacklist = require(__parentDir+'/storage/userbl.json'); // path may vary
-  sblacklist = require(__parentDir+'/storage/serverbl.json'); // path may vary
-  prefix = require(__parentDir+'/storage/prefix.json');
-  inventory = require(__parentDir+'/storage/globalinventory.json'); // path may vary
+
+  botstorage2 = require(path.join(__dirname +'/../storage/quarantines.json')); // path may vary
+  botstorage3 = require(path.join(__dirname +'/../storage/bounties.json')); // path may vary
+  botstorage4 = require(path.join(__dirname +'/../storage/timeout.json')); // path may vary
+  ublacklist = require(path.join(__dirname +'/../storage/userbl.json')); // path may vary
+  sblacklist = require(path.join(__dirname +'/../storage/serverbl.json')); // path may vary
+  prefix = require(path.join(__dirname +'/../storage/prefix.json'));
+  inventory = require(path.join(__dirname +'/../storage/globalinventory.json')); // path may vary
   
- money = require(__parentDir+'/storage/money.json'); // path may vary
+ money = require(path.join(__dirname +'/../storage/money.json')); // path may vary
   global.authorID = message.author.id; // or set it as the mentioned user's ID, etc.
   global.mentionedID = message.mentions.users.first.id; // or set it as the mentioned user's ID, etc.
 
@@ -60,7 +61,7 @@ module.exports = async (client, message) => {
 
   if(!prefix[message.guild.id]){
     prefix[message.guild.id] = "j!"
-    fs.writeFileSync(__parentDir+'/storage/prefix.json', JSON.stringify(prefix));
+    fs.writeFileSync(path.join(__dirname +'/../storage/prefix.json'), JSON.stringify(prefix));
 }
 
 
@@ -85,42 +86,39 @@ module.exports = async (client, message) => {
         client.bountycooldown.set(message.author.id, "false")
       }
 
-      if(botstorage1[message.guild.id] == null){
-        botstorage1[message.guild.id] = true
-        fs.writeFileSync(__parentDir+'/storage/jimmybot.json', JSON.stringify(botstorage1));
-       }
+     
   
        if(botstorage2[message.guild.id] == null){
         botstorage2[message.guild.id] = true
-        fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage2));
+        fs.writeFileSync(path.join(__dirname +'/../storage/quarantines.json'), JSON.stringify(botstorage2));
        }
   
        if(inventory[message.author.id] == null){
-        inventory[message.author.id] = `${message.author.id}:A:B:C:D:E:F:G:H:I:J:K:L:M:N:O:P:Q:R:S:T:U:V:W:X:Y:Z`
-        fs.writeFileSync(__parentDir+'/storage/globalinventory.json', JSON.stringify(inventory));
+        inventory[message.author.id] = `ID=${message.author.id}:A=0:B=0:C=0:D=0:E=0:F=0:G=0:H=0:I=0:J=0:K=0:L=0:M=0:N=0:O=0:P=0:Q=0:R=0:S=0:T=0:U=0:V=0:W=0:X=0:Y=0:Z=0`
+        fs.writeFileSync(path.join(__dirname +'/../storage/globalinventory.json'), JSON.stringify(inventory));
        }
 
        if(botstorage3[message.guild.id] == null ){
         botstorage3[message.guild.id] = true
-        fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage3));
+        fs.writeFileSync(path.join(__dirname +'/../storage/quarantines.json'), JSON.stringify(botstorage3));
        }
   
 
        
        if(money[message.author.id] == null){
         money[message.author.id] = 0
-        fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+        fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
        }
      
        fullmoney = Number( money[message.author.id]).toFixed(0);
        money[message.author.id] = fullmoney
-       fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+       fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
 
 
        
        if(botstorage4[message.author.id] == null ){
         botstorage4[message.author.id] = false
-        fs.writeFileSync(__parentDir+'/storage/timeout.json', JSON.stringify(botstorage4));
+        fs.writeFileSync(path.join(__dirname +'/../storage/timeout.json'), JSON.stringify(botstorage4));
        }
 
        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"bail") && message.author.bot == false && message.member.roles.cache.some(r => r.name === "Quarantined") ) {
@@ -151,19 +149,6 @@ module.exports = async (client, message) => {
         }
       }
 
-      if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"gm") && message.author.bot == false) {
-          if (!client.commands.has('goodmorning')) return;
-          try {
-            client.commands.get('goodmorning').execute(message );
-          } catch (error) { const errorem = new Discord.MessageEmbed()
-  .setColor('#CC0909')
-  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
-  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
-  .setFooter('Error caught at: Message');
-            console.error(error);
-           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
-          }
-        }
 
         if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"blacklistserver") && message.author.bot == false && message.author.id ==  743256356533960754) {
           if (!client.commands.has('blacklistserver')) return;
@@ -236,35 +221,7 @@ module.exports = async (client, message) => {
           }
         }
         
-      
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"gn") && message.author.bot == false ) {
-          if (!client.commands.has('goodnight')) return;
-          try {
-            client.commands.get('goodnight').execute(message );
-          } catch (error) { const errorem = new Discord.MessageEmbed()
-  .setColor('#CC0909')
-  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
-  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
-  .setFooter('Error caught at: Message');
-            console.error(error);
-           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
-          }
-        }
         
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"shop") && message.author.bot == false ) {
-          if (!client.commands.has('shop')) return;
-          try {
-            console.log("shop activated")
-            client.commands.get('shop').execute(message );
-          } catch (error) { const errorem = new Discord.MessageEmbed()
-  .setColor('#CC0909')
-  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
-  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
-  .setFooter('Error caught at: Message');
-            console.error(error);
-           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
-          }
-        }
         
         if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"catch") && message.author.bot == false  && botstorage3[message.guild.id] == true || message.content.toLowerCase().startsWith(prefix[message.guild.id]+"claim") && message.author.bot == false  && botstorage3[message.guild.id] == true) {
           if (!client.commands.has('catch')) return;
@@ -310,22 +267,7 @@ module.exports = async (client, message) => {
         }
         
       
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"status") && message.author.bot == false) {
-          if (!client.commands.has('status')) return;
-          try {
-            client.commands.get('status').execute(message );
-          } catch (error) { const errorem = new Discord.MessageEmbed()
-  .setColor('#CC0909')
-  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
-  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
-  .setFooter('Error caught at: Message');
-            console.error(error);
-           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
-          }
-        }
-      
-      
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"hi") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"hi") && message.author.bot == false  ) {
           if (!client.commands.has('hi')) return;
           try {
             client.commands.get('hi').execute(message , version);
@@ -339,7 +281,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().includes("good boy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes("good boy") && message.author.bot == false  ) {
           if (!client.commands.has('goodboy')) return;
           try {
             client.commands.get('goodboy').execute(message , version);
@@ -353,7 +295,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"biden") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"biden") && message.author.bot == false  ) {
           if (!client.commands.has('biden')) return;
           try {
             result = getRandomInt(3)
@@ -368,22 +310,48 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"inv") && message.author.bot == false && botstorage1[message.guild.id] == true || message.content.toLowerCase().startsWith(prefix[message.guild.id]+"inventory") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"inv") && message.author.bot == false   || message.content.toLowerCase().startsWith(prefix[message.guild.id]+"inventory") && message.author.bot == false  ) {
           if (!client.commands.has('inventory')) return;
-         // try {
+          try {
             
             client.commands.get('inventory').execute(message , version);
-        /*  }  catch (error) { const errorem = new Discord.MessageEmbed()
+          }  catch (error) { const errorem = new Discord.MessageEmbed()
   .setColor('#CC0909')
   .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
   .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
   .setFooter('Error caught at: Message');
             console.error(error);
            message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
-          } */
+          } 
+        }
+        
+        
+    
+
+        setInterval(() => {
+
+          global.shopDate = new Date().toLocaleString()
+         
+          global.shopitemnum = getRandomInt(2)
+
+        }, ms(`1h`));
+
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"shop") && message.author.bot == false   ) {
+          if (!client.commands.has('shop')) return;
+          try {
+           
+            client.commands.get('shop').execute(message , version, shopitemnum);
+          }  catch (error) { const errorem = new Discord.MessageEmbed()
+  .setColor('#CC0909')
+  .setTitle('Jimmybot ran into an error. If this persists join our support server, which you can access by pinging the bot.')
+  .setDescription("Message which caused the error: `"+message.url+"`. The error: `"+error+"`.")
+  .setFooter('Error caught at: Message');
+            console.error(error);
+           message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
+          } 
         }
       
-        if (message.content.toLowerCase().includes("goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes("goodboy") && message.author.bot == false  ) {
           if (!client.commands.has('goodboy')) return;
           try {
             client.commands.get('goodboy').execute(message , version);
@@ -396,8 +364,10 @@ module.exports = async (client, message) => {
            message.channel.send(errorem).catch(() => message.channel.send("Jimmybot encountered a fatal error, for help, please join the support server, which you can get by pinging the bot.").catch(() => console.log("Jimmybot encountered a button error in a server!")))
           }
         }
+
+        
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"good boy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"good boy") && message.author.bot == false  ) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -411,7 +381,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"gamble") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"gamble") && message.author.bot == false  ) {
           if (!client.commands.has('gamble')) return;
           try {
             client.commands.get('gamble').execute(message , version);
@@ -425,7 +395,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"goodboy") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"goodboy") && message.author.bot == false  ) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -455,7 +425,7 @@ module.exports = async (client, message) => {
         }
         
       
-        if (message.content.toLowerCase().startsWith("food") && message.content.toLowerCase().endsWith("food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith("food") && message.content.toLowerCase().endsWith("food") && message.author.bot == false  ) {
           if (!client.commands.has('food')) return;
           try {
             client.commands.get('food').execute(message , version);
@@ -469,11 +439,11 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().startsWith("bowie") && message.content.toLowerCase().endsWith("bowie") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith("bowie") && message.content.toLowerCase().endsWith("bowie") && message.author.bot == false  ) {
           message.reply("This command is no longer valid.")
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"food") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"food") && message.author.bot == false  ) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -487,7 +457,7 @@ module.exports = async (client, message) => {
           }
         }
         
-        if (message.content.toLowerCase().startsWith("play") && message.content.toLowerCase().endsWith("play") && !message.content.toLowerCase().startsWith("-") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith("play") && message.content.toLowerCase().endsWith("play") && !message.content.toLowerCase().startsWith("-") && message.author.bot == false  ) {
           if (!client.commands.has('play')) return;
           try {
             client.commands.get('play').execute(message , version);
@@ -501,7 +471,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"play") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"play") && message.author.bot == false  ) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -530,7 +500,7 @@ module.exports = async (client, message) => {
         }
       
       
-        if (message.content.toLowerCase().includes("dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes("dumb") && message.author.bot == false  ) {
           if (!client.commands.has('dumb')) return;
           try {
             client.commands.get('dumb').execute(message , version);
@@ -544,7 +514,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"dumb") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"dumb") && message.author.bot == false  ) {
           if (!client.commands.has('eastereggwarn')) return;
           try {
             client.commands.get('eastereggwarn').execute(message , version);
@@ -558,7 +528,7 @@ module.exports = async (client, message) => {
           }
         }
         
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"sus") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"sus") && message.author.bot == false  ) {
           if (!client.commands.has('sus')) return;
           try {
             client.commands.get('sus').execute(message , version);
@@ -572,7 +542,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"portrait") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"portrait") && message.author.bot == false  ) {
           if (!client.commands.has('portrait')) return;
           try {
             client.commands.get('portrait').execute(message , version);
@@ -586,7 +556,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"sad") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"sad") && message.author.bot == false  ) {
           if (!client.commands.has('sad')) return;
           try {
             client.commands.get('sad').execute(message , version);
@@ -600,7 +570,7 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"steal") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"steal") && message.author.bot == false  ) {
           if (!client.commands.has('steal')) return;
           try {
             client.commands.get('steal').execute(message , version);
@@ -614,7 +584,7 @@ module.exports = async (client, message) => {
           }
         }
        
-       if (message.content.toLowerCase().includes(prefix[message.guild.id]+"apple") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+       if (message.content.toLowerCase().includes(prefix[message.guild.id]+"apple") && message.author.bot == false  ) {
           if (!client.commands.has('apple')) return;
           try {
             client.commands.get('apple').execute(message , version);
@@ -628,11 +598,11 @@ module.exports = async (client, message) => {
           }
         }
 
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"friend") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"friend") && message.author.bot == false  ) {
           message.reply("This command is no longer valid.")
         }
       
-        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"owner") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().includes(prefix[message.guild.id]+"owner") && message.author.bot == false  ) {
           if (!client.commands.has('owner')) return;
           try {
             client.commands.get('owner').execute(message , version);
@@ -647,7 +617,7 @@ module.exports = async (client, message) => {
         }
         
       
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"talents") && message.content.toLowerCase().endsWith("s") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"talents") && message.content.toLowerCase().endsWith("s") && message.author.bot == false  ) {
           if (!client.commands.has('talents')) return;
           try {
             client.commands.get('talents').execute(message , version);
@@ -661,7 +631,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"talent") && message.content.toLowerCase().endsWith("t") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"talent") && message.content.toLowerCase().endsWith("t") && message.author.bot == false  ) {
           if (!client.commands.has('talents')) return;
           try {
             client.commands.get('talents').execute(message , version);
@@ -675,7 +645,7 @@ module.exports = async (client, message) => {
           }
         }
       
-        if (message.content.toLowerCase().startsWith("!j") && message.author.bot == false && botstorage1[message.guild.id] == true) {
+        if (message.content.toLowerCase().startsWith("!j") && message.author.bot == false  ) {
           if (!client.commands.has('wrongformat')) return;
           try {
             client.commands.get('wrongformat').execute(message , version);
@@ -730,7 +700,7 @@ module.exports = async (client, message) => {
         }
 
       
-        if (message.content.toLowerCase().toLowerCase().includes(prefix[message.guild.id]+"about") && message.author.bot == false && botstorage1[message.guild.id] == true || message.content.toLowerCase().includes(prefix[message.guild.id]+"info") && message.author.bot == false && botstorage1[message.guild.id] == true)  {
+        if (message.content.toLowerCase().toLowerCase().includes(prefix[message.guild.id]+"about") && message.author.bot == false   || message.content.toLowerCase().includes(prefix[message.guild.id]+"info") && message.author.bot == false  )  {
           if (!client.commands.has("about")) return;
           try {
             client.commands.get("about").execute(message , version);
@@ -1150,13 +1120,13 @@ module.exports = async (client, message) => {
 
           if(money[voterID] == null || !money[voterID]){
             money[message.author.id] = 0
-            fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+            fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
         }
 
            voterbal1 = money[voterID]
            voternewbal = Number(voterbal1) + 20
            money[voterID] = voternewbal
-           fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+           fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
 
 
 

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
+botstorage2 = require(path.join(__dirname +'/../storage/quarantines.json')); // path may vary
 
 
   module.exports = {
@@ -18,7 +18,7 @@ botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
     .setFooter('Jimmybot' +version);
   
     botstorage2[message.guild.id] = false
-    fs.writeFileSync(__parentDir+'/storage/quarantines.json', JSON.stringify(botstorage2));
+    fs.writeFileSync(path.join(__dirname +'/../storage/quarantines.json'), JSON.stringify(botstorage2));
     message.channel.send(isofalse)
 	},
 };

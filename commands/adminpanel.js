@@ -17,6 +17,7 @@ const Discord = require('discord.js');
 		//	{ name: 'j!quarantines (true/false)', value: "turns on or off Jimmybot's quarantine feature", inline: true },
 			{ name: 'j!bounties (true/false)', value: "turns on or off Jimmybot's bounty feature", inline: true },
 			{ name: 'j!prefix (prefix)', value: "turns on or off Jimmybot's bounty feature", inline: true },
+			{ name: 'j!shop set [role ID] [price] [description]', value: "set a server role to be sold in the shop", inline: true },
 		)
 		.setTimestamp()
 		.setFooter('Jimmybot' +version);

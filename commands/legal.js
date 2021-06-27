@@ -17,11 +17,10 @@ const { MessageButton, MessageActionRow } = require('discord-buttons')
         .setLabel("TOS & EULA")
         .setURL("https://docs.google.com/document/d/16hrnVx159b3wQ50dr-WFOS6ozue62mjuTWKYhsMKWRk/edit?usp=sharing")
 
-        const addPrivacy = new MessageActionRow()
+        const addLegal = new MessageActionRow()
         .addComponent(privacypolicy)
-
-        const addTOS = new MessageActionRow()
         .addComponent(TOS)
+       
 
 
 		const legalem = new Discord.MessageEmbed()
@@ -42,7 +41,7 @@ const { MessageButton, MessageActionRow } = require('discord-buttons')
 
         message.channel.send( {
             embed: legalem,
-            components: [addPrivacy, addTOS]
+            components: [addLegal]
         })
 	},
 };

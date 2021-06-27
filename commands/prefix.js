@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
+prefix = require(path.join(__dirname +'/../storage/prefix.json')); // path may vary
 
 
   module.exports = {
@@ -20,7 +20,7 @@ prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
 
         if(changePrefixTo && message.member.hasPermission("ADMINISTRATOR")){
         prefix[message.guild.id] = changePrefixTo
-           fs.writeFileSync(__parentDir+'/storage/prefix.json', JSON.stringify(prefix))
+           fs.writeFileSync(path.join(__dirname +'/../storage/prefix.json'), JSON.stringify(prefix))
             
         
         const embed = new Discord.MessageEmbed()
@@ -61,7 +61,7 @@ prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
 
         if(changePrefixTo && message.member.hasPermission("ADMINISTRATOR")){
         prefix[message.guild.id] = changePrefixTo
-           fs.writeFileSync(__parentDir+'/storage/prefix.json', JSON.stringify(prefix))
+           fs.writeFileSync(path.join(__dirname +'/../storage/prefix.json'), JSON.stringify(prefix))
             
         
         const embed = new Discord.MessageEmbed()

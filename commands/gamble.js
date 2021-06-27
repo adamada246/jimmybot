@@ -4,8 +4,8 @@ client.gamblecooldown = new Map();
 client.usergamble = new Map();
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-money = require(__parentDir+'/storage/money.json'); // path may vary
-prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
+money = require(path.join(__dirname +'/../storage/money.json')); // path may vary
+prefix = require(path.join(__dirname +'/../storage/prefix.json')); // path may vary
 
   module.exports = {
 	name: 'gamble',
@@ -54,14 +54,14 @@ prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
 
         const gogo = new MessageActionRow()
         .addComponent(continuebutton)
-
-        const stopstop = new MessageActionRow()
         .addComponent(abortbutton)
+      
+        
 
 
         message.channel.send( {
             embed: confirmation,
-            components: [gogo, stopstop]
+            components: [gogo]
 
         })
 

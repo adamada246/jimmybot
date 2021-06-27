@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-botstorage3 = require(__parentDir+'/storage/bounties.json'); // path may vary
+botstorage3 = require(path.join(__dirname +'/../storage/bounties.json')); // path may vary
 
 
 
@@ -24,7 +24,7 @@ botstorage3 = require(__parentDir+'/storage/bounties.json'); // path may vary
 
     
     botstorage3[message.guild.id] = true;
-    fs.writeFileSync(__parentDir+'/storage/bounties.json', JSON.stringify(botstorage3));
+    fs.writeFileSync(path.join(__dirname +'/../storage/bounties.json'), JSON.stringify(botstorage3));
     message.channel.send(isotrue)
 	},
 };

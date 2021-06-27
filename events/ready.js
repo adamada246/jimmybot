@@ -8,7 +8,13 @@ module.exports =  (client) => {
     console.log('I am ready!'); 
     
     
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
     
+    global.shopitemnum = getRandomInt(2)
+    global.shopDate = new Date().toLocaleString()
+   
     
     
   

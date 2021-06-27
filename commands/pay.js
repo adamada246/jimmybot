@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-money = require(__parentDir+'/storage/money.json'); // path may vary
+money = require(path.join(__dirname +'/../storage/money.json')); // path may vary
   module.exports = {
 	name: 'pay',
 	description: 'ok',
@@ -11,7 +11,7 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
        
         path = require('path'),
         __parentDir = path.dirname(module.parent.filename);
-        prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
+        prefix = require(path.join(__dirname +'/../storage/prefix.json')); // path may vary
         const args = message.content.slice(prefix[message.guild.id].length).trim().split(/ +/g);
         let amount = args[2]
         giver = message.author.id
@@ -61,11 +61,11 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
 
         if (message.mentions.users.first() && amount && money[giver]>=amount) {
             money[giver] -= amount;
-            fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+            fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
            tempcheck = money[reciever]
            givethismon = Number(tempcheck) + Number(amount)
            money[reciever] = givethismon
-           fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+           fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
             console.log(giverrecall.username+" gave "+amount+" treats to "+recieverrecall.username+". The giver's balance is now "+money[giver]+" treats and the reciever's balance is now "+money[reciever]+" treats.");
             message.channel.send(giverrecall.username+" successfully gave "+amount+" treats to "+recieverrecall.username+". The giver's balance is now "+money[giver]+" treats and the reciever's balance is now "+money[reciever]+" treats.")
         }

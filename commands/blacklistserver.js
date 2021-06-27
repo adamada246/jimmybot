@@ -10,8 +10,8 @@ const Discord = require('discord.js');
 	execute(message ) {
         path = require('path'),
         __parentDir = path.dirname(module.parent.filename);
-        prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
-        sblacklist = require(__parentDir+'/storage/serverbl.json'); // path may vary
+        prefix = require(path.join(__dirname +'/../storage/prefix.json')); // path may vary
+        sblacklist = require(path.join(__dirname +'/../storage/serverbl.json')); // path may vary
     
     
         const args = message.content.slice(prefix[message.guild.id].length).trim().split(/ +/g);
@@ -32,7 +32,7 @@ const Discord = require('discord.js');
 
 
         sblacklist[poopyguildid] = true
-        fs.writeFileSync(__parentDir+'/storage/serverbl.json', JSON.stringify(sblacklist));
+        fs.writeFileSync(path.join(__dirname +'/../storage/serverbl.json'), JSON.stringify(sblacklist));
         message.author.send(blacklisteddm)
 		
         

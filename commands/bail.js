@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const ms = require('ms');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-money = require(__parentDir+'/storage/money.json'); // path may vary
+money = require(path.join(__dirname +'/../storage/money.json')); // path may vary
 
 
   module.exports = {
@@ -41,7 +41,7 @@ money = require(__parentDir+'/storage/money.json'); // path may vary
         tempcheck = money[amogusperson]
         givethismon = tempcheck - 15
         money[amogusperson] = givethismon
-        fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+        fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
         peepoop3.member.roles.remove(role555.id);
         minecraftperson.send(urout)
     }

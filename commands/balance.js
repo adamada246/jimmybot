@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-money = require(__parentDir+'/storage/money.json'); // path may vary
+money = require(path.join(__dirname +'/../storage/money.json')); // path may vary
 
 
 

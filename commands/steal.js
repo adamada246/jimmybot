@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 client.stealcooldown = new Map();
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-money = require(__parentDir+'/storage/money.json'); // path may vary
+money = require(path.join(__dirname +'/../storage/money.json')); // path may vary
 const ms = require('ms');
   module.exports = {
 	name: 'steal',
@@ -26,7 +26,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
 
     if(money[message.author.id] == null){
       money[message.author.id] = 0
-      fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+      fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
      }
 
      
@@ -34,10 +34,10 @@ if (client.stealcooldown.get(message.author.id) == "false"){
 
         path = require('path'),
         __parentDir = path.dirname(module.parent.filename);
-        prefix = require(__parentDir+'/storage/prefix.json'); // path may vary
+        prefix = require(path.join(__dirname +'/../storage/prefix.json')); // path may vary
         giver = message.author.id
         giverrecall = message.author
-        stealing = require(__parentDir+'/storage/stealing.json'); // path may vary
+        stealing = require(path.join(__dirname +'/../storage/stealing.json')); // path may vary
         moneydir = path.join(__dirname + '/../storage/money.json')
 
 
@@ -77,7 +77,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
               newmontake = Number(stealeemon ) * (1-Number(percentpoop))
               money[message.mentions.users.first().id] = newmongive
               money[message.author.id] = newmontake
-              fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+              fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
            
               client.stealcooldown.set(message.author.id, "true")
               setTimeout(() => {
@@ -101,7 +101,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
               newmontake = Number(stealeemon) - 10
               money[message.mentions.users.first().id] = newmongive
               money[message.author.id] = newmontake
-              fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+              fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
               message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to Jimmy! They've given you 10 treats.")
               
               
@@ -145,7 +145,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
                 newmontake = Number( stealeemon )- Number(givemoneyamt)
                 money[message.author.id] = newmongive
                 money[message.mentions.users.first().id] = newmontake
-                fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+                fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
                 message.channel.send(message.author.tag+" stole "+givemoneyamt+" ("+stealamt+"%) treats from "+message.mentions.users.first().tag+".")
                 client.stealcooldown.set(message.author.id, "true")
                 setTimeout(() => {
@@ -162,7 +162,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
                  newmontake = Number(stealeemon )- 10
                  money[message.mentions.users.first().id] = newmongive
                  money[message.author.id] = newmontake
-                 fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+                 fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
                  message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to you catching them! They've given you 10 treats.")
                  client.stealcooldown.set(message.author.id, "true")
                  setTimeout(() => {

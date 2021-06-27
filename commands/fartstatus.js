@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-botstorage2 = require(__parentDir+'/storage/quarantines.json'); // path may vary
+botstorage2 = require( path.join(__dirname +'/../storage/quarantines.json')); // path may vary
 
   
 

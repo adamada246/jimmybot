@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 path = require('path'),
 __parentDir = path.dirname(module.parent.filename);
-storage = require(__parentDir+'/storage/bounty.json'); // path may vary
-money = require(__parentDir+'/storage/money.json'); // path may vary
+storage = require( path.join(__dirname +'/../storage/bounty.json')); // path may vary
+money = require( path.join(__dirname +'/../storage/money.json')); // path may vary
 
 const ms = require('ms');
   module.exports = {
@@ -38,9 +38,9 @@ const ms = require('ms');
             tempcheck = money[message.author.id]
             givethismon = tempcheck + rewardamount
             money[message.author.id] = givethismon
-            fs.writeFileSync(__parentDir+'/storage/money.json', JSON.stringify(money));
+            fs.writeFileSync( path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
             storage[message.guild.id] = null;
-            fs.writeFileSync(__parentDir+'/storage/bounty.json', JSON.stringify(storage));
+            fs.writeFileSync(path.join(__dirname +'/../storage/bounty.json'), JSON.stringify(storage));
         }
     }
         
