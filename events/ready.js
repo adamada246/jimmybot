@@ -14,7 +14,7 @@ module.exports =  (client) => {
     
     global.shopitemnum = getRandomInt(2)
     global.shopDate = new Date().toLocaleString()
-   
+   global.hourlyDiscount = (getRandomInt(75) + 50)/100
     
     
   

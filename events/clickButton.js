@@ -190,9 +190,9 @@ function getRandomInt(max) {
               
             }
 
-
+//(Number(returnItemDetails(shopitemID, "price"))*hourlyDiscount).toFixed(0)
             if(button.id.startsWith("SHOP_GLOBAL")){
-          if(Number( money[button.clicker.user.id] ) >= Number(returnItemDetails(itemLetter, "price") )){
+          if(Number( money[button.clicker.user.id] ) >= (Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)){
            
             currentvalue = returnValue(button.clicker.user.id, invNum)
             
@@ -202,14 +202,14 @@ function getRandomInt(max) {
            
           newvalue = Number(currentvalue) + 1
 
-          money[button.clicker.user.id] = Number(money[button.clicker.user.id]) - Number(returnItemDetails(itemLetter, "price"))
+          money[button.clicker.user.id] = Number(money[button.clicker.user.id]) - (Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)
           fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
         
           newinvvalue = inventory[button.clicker.user.id].replace(`${inv[invNum]}`, `${invNum}=${newvalue}`)
           inventory[button.clicker.user.id] = newinvvalue
         
           fs.writeFileSync(path.join(__dirname +'/../storage/globalinventory.json'), JSON.stringify(inventory));
-          button.reply.send(button.clicker.user.toString()+", You bought one "+returnItemDetails(itemLetter, "name")+` for \`     ${returnItemDetails(itemLetter, "price")} treats.\``,{
+          button.reply.send(button.clicker.user.toString()+", You bought one "+returnItemDetails(itemLetter, "name")+` for \`     ${(Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)} treats.\``,{
             ephemeral: false
           })
           }
@@ -221,7 +221,7 @@ function getRandomInt(max) {
         })
         }
 
-        if(Number( money[button.clicker.user.id] ) < Number(returnItemDetails(itemLetter, "price") )){
+        if(Number( money[button.clicker.user.id] ) < (Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)){
           button.reply.send(button.clicker.user.toString() + ", you don't have enough money for this!",{
             ephemeral: true
           })
@@ -264,7 +264,7 @@ function getRandomInt(max) {
             }
             if(!button.clicker.member.roles.cache.has(roleID)){
              
-              if(Number(money[button.clicker.user.id]) >= Number(returnItemDetails(guildID, "price"))){
+              if(Number(money[button.clicker.user.id]) >= (Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)){
                 //subtract money and reply
                 botmember = await button.guild.members.cache.get(client.user.id)
                 let botrole = await botmember.roles.highest
@@ -272,16 +272,16 @@ function getRandomInt(max) {
                 
               if(role.position < botrole.position){
               button.clicker.member.roles.add(role)
-              money[button.clicker.user.id] = Number(money[button.clicker.user.id])-Number(returnItemDetails(guildID, "price"))
+              money[button.clicker.user.id] = Number(money[button.clicker.user.id])- ((Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)  )
               fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
-              button.reply.send(`${button.clicker.user}, you've bought the ${role.name} role for ${returnItemDetails(guildID, "price")} treats. Check your roles!`)
+              button.reply.send(`${button.clicker.user}, you've bought the ${role.name} role for ${(Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0)} treats. Check your roles!`)
               }
               else{
             
                 button.reply.send(`${button.clicker.user.toString()}, I don't have access to this role, it's higher than me on the role list. Either have an admin give me more perms by moving me up on the role list, or have an admin choose another role below me on the list.  For more info, join my support server, which you can access by pinging me.`)
               }
             }
-              if(Number(money[button.clicker.user.id]) <= Number(returnItemDetails(guildID, "price"))){
+              if(Number(money[button.clicker.user.id]) <= Number((Number(returnItemDetails(itemLetter, "price") )  *hourlyDiscount ).toFixed(0))){
                 button.reply.send(`${button.clicker.user}, you do not have enough money to complete this transaction!`, {
                   ephemeral: true
                 })

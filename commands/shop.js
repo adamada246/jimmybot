@@ -138,7 +138,7 @@ const ms = require('ms');
 			.setColor('#f0dc66')
 			.setAuthor(`This Hour's Shop`)
 		.addFields(
-		  { name: `${returnItemDetails(shopitemID, "name")}  ${emoji}`, value: `${returnItemDetails(shopitemID, "desc")} \` Cost: ${returnItemDetails(shopitemID, "price")} treats \``, inline: false },
+		  { name: `${returnItemDetails(shopitemID, "name")}  ${emoji}`, value: `${returnItemDetails(shopitemID, "desc")}  Cost: ~~${returnItemDetails(shopitemID, "price")}~~ \`${(Number(returnItemDetails(shopitemID, "price"))*hourlyDiscount).toFixed(0) }\` treats `, inline: false },
 		  { name: itemReg[message.guild.id] ? `${returnItemDetails(message.guild.id, "name")} Role` : `Server Specific Role`, value: itemReg[message.guild.id] ? `Get a Role on this server (${message.guild.name}), role description: ${returnItemDetails(message.guild.id, "desc")}.  \`   Cost: ${returnItemDetails(message.guild.id, "price")} treats\`   ` : `The admins on this server did not specify a role to sell in the shop! (They can do this by using the command ${prefix[message.guild.id]}shop set [role ID])`, inline: false }
 		)
 			.setFooter(`${message.author.tag} currently has ${money[message.author.id]} treats total. || The shop resets every hour, be sure to check back soon! `)
@@ -146,7 +146,7 @@ const ms = require('ms');
 		
 
 
-
+            (Number(returnItemDetails(shopitemID, "price"))*hourlyDiscount).toFixed(0)
 
 
     

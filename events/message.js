@@ -332,9 +332,9 @@ module.exports = async (client, message) => {
         setInterval(() => {
 
           global.shopDate = new Date().toLocaleString()
-         
+          global.hourlyDiscount = (getRandomInt(75) + 50)/100
           global.shopitemnum = getRandomInt(2)
-
+          
         }, ms(`1h`));
 
         if (message.content.toLowerCase().startsWith(prefix[message.guild.id]+"shop") && message.author.bot == false   ) {

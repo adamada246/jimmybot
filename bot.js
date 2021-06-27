@@ -12,9 +12,9 @@ const ms = require('ms');
 const commandFile = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=268445750&scope=bot
 // https://discord.com/api/oauth2/authorize?client_id=808768146135318595&permissions=8&scope=bot
-global.version = " 7.1 Pre-Release";
+global.version = " Release 7.1";
 global.prefix = "j!"
-global.date = "6/20/2021"
+global.date = "6/27/2021"
 const { MessageButton, MessageActionRow } = require('discord-buttons')
 const disbut = require('discord-buttons')(client);
 

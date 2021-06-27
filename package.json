@@ -1,6 +1,6 @@
 {
-  "name": "11jimmybot",
-  "version": "1.0.0",
+  "name": "jimmybot",
+  "version": " Release 7.1",
   "description": "jimmy but discord bot",
   "main": "bot.js",
   "scripts": {
@@ -10,14 +10,13 @@
   "keywords": [
     "jimmybot"
   ],
-  "author": "Paper Towel",
+  "author": "Adam (Water Bottle)",
   "license": "ISC",
   "dependencies": {
-    "canvas": "^2.8.0",
+    
     "discord-buttons": "^3.2.1",
     "discord.js": "^12.2.0",
     "fs": "0.0.1-security",
-    "moment": "^2.29.1",
     "ms": "^2.1.2"
   }
 }
