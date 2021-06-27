@@ -37,7 +37,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
         prefix = require(path.join(__dirname +'/../storage/prefix.json')); // path may vary
         giver = message.author.id
         giverrecall = message.author
-        stealing = require(path.join(__dirname +'/../storage/stealing.json')); // path may vary
+        inventory = require(path.join(__dirname +'/../storage/globalinventory.json')); // path may vary
         moneydir = path.join(__dirname + '/../storage/money.json')
 
 
@@ -51,6 +51,17 @@ if (client.stealcooldown.get(message.author.id) == "false"){
         secondfunction(message);
     } 
 
+    function returnValue(userID, itemnum) {
+      inv =  inventory[userID].split(/:+/g)
+      poop = inv[itemnum]
+      argument = poop.split(/=+/g)
+      if (!argument[1]){
+        return null
+      }
+      if (argument[1]){
+        return argument[1]
+      }
+    }
 
 
 
@@ -64,7 +75,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
           message.reply("You can't steal from yourself!")
         }
         else{
-          if (stealing[stealeeID] == false || !stealing[stealeeID]){
+          if (returnValue(message.mentions.users.first().id, 1) == 0){
             recoilchance = getRandomInt(6)
             if (recoilchance == 0){
               recoilamt = getRandomInt(100)
@@ -91,6 +102,12 @@ if (client.stealcooldown.get(message.author.id) == "false"){
             }
           }
           else{
+
+            currentvalue = returnValue(message.mentions.users.first().id, 1)
+           newvalue = (Number(returnValue(message.mentions.users.first().id, 1)) - Number(0.2)).toFixed(1)
+           inventory[message.mentions.users.first().id] = inventory[message.mentions.users.first().id].replace(`${inv[1]}`,`A=${newvalue}` )
+           fs.writeFileSync(path.join(__dirname +'/../storage/globalinventory.json'), JSON.stringify(inventory));
+            
             jimmychance = getRandomInt(9)
 
             if(jimmychance !== 0){
@@ -102,7 +119,7 @@ if (client.stealcooldown.get(message.author.id) == "false"){
               money[message.mentions.users.first().id] = newmongive
               money[message.author.id] = newmontake
               fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
-              message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to Jimmy! They've given you 10 treats.")
+              message.mentions.users.first().send(message.author.tag+" tried to steal from you but failed due to your Jimmy Treat Guard! They've given you 10 treats.")
               
               
           .catch(() => console.log("user does not have dms on"));
@@ -113,8 +130,8 @@ if (client.stealcooldown.get(message.author.id) == "false"){
   
             }
             else if(jimmychance == 0){
-             message.reply("Wow! The person you tried to steal from had a Jimmy guarding their treats, but luckily it was sleeping.")
-              recoilamt = getRandomInt(100)
+             message.reply("Wow! The person you tried to steal from had a Jimmy treat guard guarding their treats, but luckily it was sleeping.")
+              stealamt = getRandomInt(100)
               stealfnc(message, stealamt)
             }
           }

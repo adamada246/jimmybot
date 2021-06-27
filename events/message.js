@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 global.fs = require('fs');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const ms = require('ms');
+
 client.bountycooldown = new Map();
 
 
@@ -1116,7 +1117,20 @@ module.exports = async (client, message) => {
           voter.send(thanksem)
           .catch(() => console.log("The voter has dms off!"));
 
+         
+          function returnValue(userID, itemnum) {
+            inv =  inventory[userID].split(/:+/g)
+            poop = inv[itemnum]
+            argument = poop.split(/=+/g)
+            if (!argument[1]){
+              return null
+            }
+            if (argument[1]){
+              return argument[1]
+            }
+          }
 
+          
 
           if(money[voterID] == null || !money[voterID]){
             money[message.author.id] = 0
@@ -1126,6 +1140,18 @@ module.exports = async (client, message) => {
            voterbal1 = money[voterID]
            voternewbal = Number(voterbal1) + 20
            money[voterID] = voternewbal
+
+           if(Number(returnValue(voterID, 2)) !== 0){
+             money[voterID] = Number(money[voterID]) + 180
+             voter.send("Psst... Because of the vote multiplier you had in your inventory, your reward amount has been multiplied by 10, so you actually got a reward of 200 treats!")
+             currentvalue = returnValue(voterID, 2)
+             newvalue = (Number(returnValue(voterID, 2)) - Number(1)).toFixed(0)
+             inventory[voterID] = inventory[voterID].replace(`${inv[2]}`,`B=${newvalue}`)
+             fs.writeFileSync(path.join(__dirname +'/../storage/globalinventory.json'), JSON.stringify(inventory));
+           }
+
+
+
            fs.writeFileSync(path.join(__dirname +'/../storage/money.json'), JSON.stringify(money));
 
 
